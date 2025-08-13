@@ -7,22 +7,14 @@ import {productWithPayLoad} from'@/types/productWithPayLoad'
 // import { clsx } from 'clsx';
 
 export default function index({items}:{items:productWithPayLoad[]}) {
-    // const sizes=[{id:crypto.randomUUID(),name:'small',price:0},
-    //     {id:crypto.randomUUID(),name:'medium',price:4},
-    //     {id:crypto.randomUUID(),name:'large',price:8},
-    // ]
-
-    //     const extras=[{id:crypto.randomUUID(),name:'cheese',price:2},
-    //     {id:crypto.randomUUID(),name:'onion',price:4},
-    //     {id:crypto.randomUUID(),name:'Potato',price:6},
-    // ]
+ 
   return (
     <div>
-          <ul className='grid grid-cols-1 md:grid-cols-3 gap-20 !my-5 container'>{
+          <ul className='grid grid-cols-1 md:grid-cols-3 gap-10 !my-5 container '>{
         items.map( (product)=>
             <li key={product.id}>
-                <div className='flex flex-col  hover:bg-red-100 !my-5 gap-2 rounded-xl'>
-                    <Image src={product.img} width={250} height={100} objectFit='cover' alt='pizza' />
+                <div className='flex flex-col items-center hover:bg-red-100 bg-red-200 !my-5  gap-2 rounded-xl !p-9' >
+                    <Image src={product.img} width={200} height={100} objectFit='cover' alt='pizza' />
                     <div className='flex justify-around w-full items-center '>
                         <div className='text-lg font-bold'>{product.name}</div>
                         <div className='text-sm text-gray-500'>{formatCurrency(product.basePrice)}</div>
