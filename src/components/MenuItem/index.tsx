@@ -4,12 +4,14 @@ import { formatCurrency } from '@/lib/formatters'
 import MenuButton from '@/components/MenuButton/index'
 // import { Product } from '@prisma/client'
 import {productWithPayLoad} from'@/types/productWithPayLoad'
+import { Divide } from 'lucide-react'
 // import { clsx } from 'clsx';
 
 export default function index({items}:{items:productWithPayLoad[]}) {
  
   return (
     <div>
+      {items?
           <ul className='grid grid-cols-1 md:grid-cols-3 gap-10 !my-5 container '>{
         items.map( (product)=>
             <li key={product.id}>
@@ -29,6 +31,7 @@ export default function index({items}:{items:productWithPayLoad[]}) {
                  </li>
   )}
     </ul>
+    : <div className='text-2xl !mt-11 text-red-500 '> No Products Found 😑 !</div>}
     </div>
   )
 }
