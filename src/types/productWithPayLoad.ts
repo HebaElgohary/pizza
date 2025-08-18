@@ -6,3 +6,15 @@ export type productWithPayLoad=Prisma.ProductGetPayload<{
         extras:true
     }
 }>
+
+export type categoryWithPayLoad=Prisma.CategoryGetPayload<{
+  
+            include:{
+                products:{
+                    include:{
+                        sizes:true;
+                        extras:true;
+                    }
+                }
+            }    
+}>

@@ -4,7 +4,6 @@ import { formatCurrency } from '@/lib/formatters'
 import MenuButton from '@/components/MenuButton/index'
 // import { Product } from '@prisma/client'
 import {productWithPayLoad} from'@/types/productWithPayLoad'
-import { Divide } from 'lucide-react'
 // import { clsx } from 'clsx';
 
 export default function index({items}:{items:productWithPayLoad[]}) {

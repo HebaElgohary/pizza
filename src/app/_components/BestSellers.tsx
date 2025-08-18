@@ -5,8 +5,9 @@ import { getBestSellers } from "@/server/db/products";
 import {productWithPayLoad} from '@/types/productWithPayLoad'
 export async function BestSellers() {
 
-  const bestSellers = await getBestSellers(
-  ) as productWithPayLoad[];
+
+  const bestSellers = await getBestSellers(3
+  ) ;
 
   // await db.size.deleteMany()
   //  await db.size.createMany({
