@@ -4,6 +4,7 @@ import { NavBar } from "./NavBar";
 import { Button } from "../ui/button";
 import { PrefetchOnHoverLink } from "../Link";
 import { Routes } from "@/constants/enums";
+import CartButton from "./CartButton";
 export default function Index() {
   return (
     <header className="container flex justify-between items-center">
@@ -25,6 +26,7 @@ export default function Index() {
         </span>
       </PrefetchOnHoverLink>
       <NavBar />
+      <CartButton/>
     </header>
   );
 }

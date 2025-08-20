@@ -3,6 +3,7 @@ import { Geist, Geist_Mono ,Roboto} from "next/font/google";
 import "./globals.css";
 import Header from '@/components/header'
 import Footer from '@/components/footer'
+import ReduxProvider from "@/providers/ReduxProvider";
 
 
 const roboto = Roboto({
@@ -25,6 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ReduxProvider>
       <body
         className={roboto.className}
       >
@@ -32,6 +34,7 @@ export default function RootLayout({
         {children}
         <Footer/>
       </body>
+      </ReduxProvider>
     </html>
   );
 }
