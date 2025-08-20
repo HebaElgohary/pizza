@@ -17,10 +17,10 @@ export default function Index() {
             priority
           />
           <p
-            className="text-primary text-lg font-bold md:font-extrabold md:text-3xl lg:text-5xl"
+            className="text-primary text-lg font-bold md:font-extrabold md:text-xl lg:text-2xl"
             style={{ fontFamily: 'cursive' }}
           >
-            Pizza
+            Pizzanova
           </p>
         </span>
       </PrefetchOnHoverLink>

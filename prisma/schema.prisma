@@ -28,6 +28,13 @@ model User {
   updatedAt     DateTime         @updatedAt
   orders        OrderedProduct[]
 }
+model Chef {
+  id String @id @default(cuid())
+  name String
+  role String
+  img String
+  bio String
+}
 
 model Product {
   id          String           @id @default(cuid())

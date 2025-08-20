@@ -8,7 +8,7 @@ export default async function menu() {
   const categories:categoryWithPayLoad[]=await getProductsByCategories()
 
   return (
-  <main className='container min-h-[76vh]'>
+  <main className='container  '>
 {
   categories.map((category)=>
     <div key={category.id}>
@@ -17,7 +17,7 @@ export default async function menu() {
    <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 !my-5 container '>
             {category.products.map((product)=>
            <li key={product.id}>
-  <div className="group bg-white rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl">
+  <div className="group bg-red-50 rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl">
     <div className="relative w-full h-48">
       <Image 
         src={product.img} 

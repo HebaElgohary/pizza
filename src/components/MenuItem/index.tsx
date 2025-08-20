@@ -1,36 +1,43 @@
-// import { Button } from '@/components/ui/button';
-import Image from 'next/image'
-import { formatCurrency } from '@/lib/formatters'
-import MenuButton from '@/components/MenuButton/index'
-// import { Product } from '@prisma/client'
-import {productWithPayLoad} from'@/types/productWithPayLoad'
-// import { clsx } from 'clsx';
+import Image from "next/image";
+import { formatCurrency } from "@/lib/formatters";
+import MenuButton from "@/components/MenuButton/index";
+import { productWithPayLoad } from "@/types/productWithPayLoad";
 
-export default function index({items}:{items:productWithPayLoad[]}) {
- 
+export default function ProductGrid({ items }: { items: productWithPayLoad[] }) {
   return (
-    <div>
-      {items?
-          <ul className='grid grid-cols-1 md:grid-cols-3 gap-10 !my-5 container '>{
-        items.map( (product)=>
-            <li key={product.id}>
-                <div className='flex flex-col items-center hover:bg-red-100 bg-red-200 !my-5  gap-2 rounded-xl !p-9' >
-                    <Image src={product.img} width={200} height={100} objectFit='cover' alt='pizza' />
-                    <div className='flex justify-around w-full items-center '>
-                        <div className='text-lg font-bold'>{product.name}</div>
-                        <div className='text-sm text-gray-500'>{formatCurrency(product.basePrice)}</div>
-                    </div>
-                    <div className='text-center text-gray-500'> {product.description}</div>
-
-                    {/* <Button className='!p-3 rounded-2xl'>Add to cart</Button> */}
-                    <div className='text-center'>
-                    <MenuButton item={product}  />
-                    </div>
-                    </div>   
-                 </li>
-  )}
-    </ul>
-    : <div className='text-2xl !mt-11 text-red-500 '> No Products Found 😑 !</div>}
+    <div className="container !my-8 w-full">
+      {items && items.length > 0 ? (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
+          {items.map((product) => (
+              <li key={product.id}>
+     <div className="group bg-red-50 rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl ">
+       <div className="relative w-full h-48">
+         <Image 
+           src={product.img}  
+           alt={product.name} 
+           fill
+           className="object-cover group-hover:scale-110 transition-transform"
+         />
+       </div>
+       <div className="!p-4 flex flex-col gap-2">
+         <div className="flex justify-between items-center">
+           <h4 className="text-lg font-semibold">{product.name}</h4>
+           <span className="text-primary font-bold">{formatCurrency(product.basePrice)}</span>
+         </div>
+         <p className="text-gray-500 text-sm line-clamp-2">{product.description}</p>
+         <div className="!mt-3 flex justify-center">
+           <MenuButton item={product} />
+         </div>
+       </div>
+     </div>
+   </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-2xl !mt-11 text-center text-red-500 animate-pulse">
+          No Products Found 😑
+        </div>
+      )}
     </div>
-  )
+  );
 }

@@ -26,14 +26,14 @@ export default function index({ item }: { item: productWithPayLoad }) {
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-[425px] md:max-w-[500px] max-h-[60vh] flex flex-col  overflow-y-auto">
-          <DialogHeader className="flex flex-col items-center !p-4">
+          <DialogHeader className="flex flex-col items-center !p-1">
             <Image src={item.img} alt="pizza" width={200} height={100} />
-            <DialogTitle>{item.name}</DialogTitle>
+            <DialogTitle className="text-primary text-2xl">{item.name}</DialogTitle>
             <DialogDescription>{item.description}</DialogDescription>
           </DialogHeader>
 
           <div className="">
-            <div className=" flex flex-col gap-2 !p-11 !pt-3 ">
+            <div className=" flex flex-col gap-2 !p-11 !pt-0 ">
               <Label htmlFor="size" className="text-lg font-bold text-center">
                 pick your size
               </Label>
