@@ -4,12 +4,11 @@ import { NavBar } from "./NavBar";
 import { Button } from "../ui/button";
 import { PrefetchOnHoverLink } from "../Link";
 import { Routes } from "@/constants/enums";
-import CartButton from "./CartButton";
 export default function Index() {
   return (
     <header className="container flex justify-between items-center">
       <PrefetchOnHoverLink href={Routes.ROOT}>
-        <span className="flex items-center">
+        <span className=" lg:flex items-center ">
           <Image
             src="/images/pizzeria logo.jpg"
             width={110}
@@ -18,7 +17,7 @@ export default function Index() {
             priority
           />
           <p
-            className="text-primary text-lg font-bold md:font-extrabold md:text-xl lg:text-2xl"
+            className="text-primary text-lg font-bold md:font-extrabold md:text-xl lg:text-2xl !ml-3"
             style={{ fontFamily: 'cursive' }}
           >
             Pizzanova
@@ -26,7 +25,6 @@ export default function Index() {
         </span>
       </PrefetchOnHoverLink>
       <NavBar />
-      <CartButton/>
     </header>
   );
 }

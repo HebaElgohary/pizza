@@ -26,15 +26,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ReduxProvider>
       <body
         className={roboto.className}
       >
+      <ReduxProvider>
+
         <Header></Header>
         {children}
         <Footer/>
-      </body>
       </ReduxProvider>
+
+      </body>
     </html>
   );
 }
