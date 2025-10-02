@@ -16,13 +16,16 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { productWithPayLoad } from "@/types/productWithPayLoad";
 import { Size, ProductSizes, Extra } from "@prisma/client";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
+import { addCartItem } from "@/redux/features/cart/cartSlice";
 
 // -------------- Main Component ----------------
 export default function MenuBtn({ item }: { item: productWithPayLoad }) {
   const cart = useAppSelector((state: RootState) => state.cart).items;
+  const itemQuantity = getItemQuantity(item.id, cart);
 
+  const dispatch = useAppDispatch();
   const defaultSize =
     cart.find((product) => product.id === item.id)?.size ||
     item.sizes.find((p) => p.name === ProductSizes.SMALL);
@@ -32,7 +35,7 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
   const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
   const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtra!);
 
-  const [totalPrice,setTotalPrice] =useState( item.basePrice);
+  const [totalPrice, setTotalPrice] = useState(item.basePrice);
   useMemo(() => {
     let extraPrice = 0;
     for (const extra of selectedExtras) {
@@ -40,6 +43,19 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
     }
     setTotalPrice(item.basePrice + selectedSize.price + extraPrice);
   }, [selectedSize, selectedExtras]);
+
+  const handelAddToCart = (item: productWithPayLoad) => {
+    dispatch(
+      addCartItem({
+        id: item.id,
+        name: item.name,
+        image: item.img,
+        basePrice: item.basePrice,
+        size: selectedSize,
+        extras: selectedExtras,
+      })
+    );
+  };
   return (
     <Dialog>
       <form>
@@ -85,7 +101,12 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
 
           <DialogFooter className="!justify-center !py-3">
             <DialogClose asChild>
-              <Button className="!p-3 rounded-2xl w-1/3">Add to cart {formatCurrency(totalPrice)}</Button>
+              <Button
+                className="!p-3 rounded-2xl w-1/3"
+                onClick={() => handelAddToCart(item)}
+              >
+                Add to cart {formatCurrency(totalPrice)}
+              </Button>
             </DialogClose>
           </DialogFooter>
         </DialogContent>
@@ -132,6 +153,7 @@ function RadioGroupDemo({
 
 // -------------- Checkbox component for Extras ----------------
 import { Checkbox } from "@/components/ui/checkbox";
+import { getItemQuantity } from "@/lib/CartQuantity";
 
 export function CheckboxDemo({
   extras,
