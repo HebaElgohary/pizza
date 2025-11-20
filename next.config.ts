@@ -9,7 +9,10 @@ const nextConfig: NextConfig = {
     remotePatterns:[
       {protocol:'https',hostname:'*'}
     ]
-  }
+  },
+
+
 };
+
 
 export default nextConfig;

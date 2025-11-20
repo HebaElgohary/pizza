@@ -13,28 +13,38 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { getItemQuantity } from "@/lib/CartQuantity";
 import { Label } from "@radix-ui/react-label";
 import { productWithPayLoad } from "@/types/productWithPayLoad";
 import { Size, ProductSizes, Extra } from "@prisma/client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
-import { addCartItem } from "@/redux/features/cart/cartSlice";
+import {
+  addCartItem,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  cartItem,
+} from "@/redux/features/cart/cartSlice";
 
 // -------------- Main Component ----------------
 export default function MenuBtn({ item }: { item: productWithPayLoad }) {
-  const cart = useAppSelector((state: RootState) => state.cart).items;
-  const itemQuantity = getItemQuantity(item.id, cart);
+  const cart = useAppSelector((state: RootState) => state.cart!).items;
 
   const dispatch = useAppDispatch();
   const defaultSize =
-    cart.find((product) => product.id === item.id)?.size ||
+    cart.find((product: cartItem) => product.id === item.id)?.size ||
     item.sizes.find((p) => p.name === ProductSizes.SMALL);
 
   const defaultExtra = cart.find((p) => p.id === item.id)?.extras || [];
 
   const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
   const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtra!);
-
+  const itemQuantity = getItemQuantity(
+    cart,
+    item.id,
+    selectedSize?.id,
+    selectedExtras
+  );
   const [totalPrice, setTotalPrice] = useState(item.basePrice);
   useMemo(() => {
     let extraPrice = 0;
@@ -101,13 +111,54 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
 
           <DialogFooter className="!justify-center !py-3">
             <DialogClose asChild>
-              <Button
-                className="!p-3 rounded-2xl w-1/3"
-                onClick={() => handelAddToCart(item)}
-              >
-                Add to cart {formatCurrency(totalPrice)}
-              </Button>
+              {itemQuantity == 0 ? (
+                <Button
+                  className="!p-3 rounded-2xl w-1/3"
+                  onClick={() => {
+                    handelAddToCart(item);
+                  }}
+                >
+                  Add to cart {formatCurrency(totalPrice)}
+                </Button>
+              ) : (
+                <Button className="!p-3 rounded-2xl w-1/3">Done </Button>
+              )}
             </DialogClose>
+            {itemQuantity > 0 ? (
+              <div className="flex bg-gray-100 gap-5 items-center !mx-auto">
+                <Button
+                  variant={"outline"}
+                  className=" !p-3 text-2xl text-primary font-bold"
+                  onClick={() => {
+                    dispatch(
+                      decreaseItemQuantity({
+                        id: item.id,
+                        sizeId: selectedSize.id,
+                        extras: selectedExtras,
+                      })
+                    );
+                  }}
+                >
+                  -
+                </Button>
+                <span>{itemQuantity}</span>
+                <Button
+                  variant={"outline"}
+                  className="outlined !p-3 text-2xl text-primary font-bold"
+                  onClick={() => {
+                    dispatch(
+                      increaseItemQuantity({
+                        id: item.id,
+                        sizeId: selectedSize.id,
+                        extras: selectedExtras,
+                      })
+                    );
+                  }}
+                >
+                  +
+                </Button>
+              </div>
+            ) : null}
           </DialogFooter>
         </DialogContent>
       </form>
@@ -153,7 +204,6 @@ function RadioGroupDemo({
 
 // -------------- Checkbox component for Extras ----------------
 import { Checkbox } from "@/components/ui/checkbox";
-import { getItemQuantity } from "@/lib/CartQuantity";
 
 export function CheckboxDemo({
   extras,

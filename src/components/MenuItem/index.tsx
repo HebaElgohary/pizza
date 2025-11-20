@@ -5,7 +5,7 @@ import { productWithPayLoad } from "@/types/productWithPayLoad";
 
 export default function ProductGrid({ items }: { items: productWithPayLoad[] }) {
   return (
-    <div className="container !my-8 w-full">
+    <div className="container !my-8 w-full lg:!w-2/3 !mx-5">
       {items && items.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 ">
           {items.map((product) => (

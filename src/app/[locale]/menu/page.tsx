@@ -1,6 +1,6 @@
 import React from 'react'
 import { getProductsByCategories } from '@/server/db/products'
-import { categoryWithPayLoad } from '../../types/productWithPayLoad';
+import { categoryWithPayLoad } from '../../../types/productWithPayLoad';
 import Image from 'next/image';
 import MenuButton from '@/components/MenuButton/index'
 import { formatCurrency } from '@/lib/formatters';

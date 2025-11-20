@@ -1,15 +1,17 @@
 "use client";
 import React, { useState } from "react";
 import { PrefetchOnHoverLink } from "@/components/Link";
-import { title } from "process";
 import { Routes, Pages } from "@/constants/enums";
 import { Button, buttonVariants } from "../ui/button";
-import { Menu, Smartphone, XIcon } from "lucide-react";
+import { Menu  } from "lucide-react";
 import CartButton from "./CartButton";
 
 import { X } from "lucide-react";
 
-export function NavBar() {
+
+export  function NavBar() {
+
+
   const [open, setOpen] = useState(false);
 
   const links = [

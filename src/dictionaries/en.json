@@ -1,0 +1,68 @@
+{
+    "nav":{
+        "logo":"Pizzanova",
+        "menu":"menue",
+        "about":"about",
+        "contact":"contact",
+        "login":"Login",
+        "langBtn":"English"
+
+    },
+    
+    
+    
+    "hero" : {
+
+    "title":"  A Slice of happeniss",
+    "decription":"At Pizzanova, we believe that pizza is more than just food . it’s a story told in every slice. It’s the aroma that brings people to the table, the first bite that sparks joy, and the warmth that lingers in every gathering. To us, pizza is a universal language"
+    ,"btn1":"Order now"
+        ,"btn2":"Learn more "
+
+
+    },
+    "bestSellers":{
+        "title":"Check out"
+        ,"decription":"Our Best Sellers"
+
+}
+,
+"about":{
+    "title":"Our Story",
+    "decription":"About Us",
+    "h3":"Handcrafted • Local • Seasonal"
+    ,"h1":"Crafted with passion.",
+        "h2":" Served with warmth."
+
+   ,"p":"We believe great pizza starts with real ingredients and honest technique. Our kitchen blends classic methods with contemporary flavor to deliver comforting, elevated dishes — meant to be shared."
+   ,"btn1":"Order now",
+   "btn2":"Meet Our CHefs"
+}
+,"contact":{
+
+    "title":"Contact Us",
+    "description":"We'd love to hear from you! Have a question, feedback, or a business inquiry? Drop us a line and we’ll get back to you shortly.",
+     "getTouch": "Get in touch",
+     "phone": "01012121212"
+     
+, "mail":"hello@example.com",
+"address":"Cairo, Egypt",
+     
+       "formTitle":"sen us message",
+       "name":"Your Name ",
+       "email":"Your Email ",
+       "msg":"Your Message ",
+       "btn":"Send Message"
+
+
+ 
+}
+
+
+
+
+
+
+
+
+
+}
