@@ -1,6 +1,6 @@
 import React from 'react'
-import CartItems from './_component/CartItems'
-import CheckoutForm from './_component/CheckoutForm'
+import CartItems from './_components/CartItems'
+import CheckoutForm from './_components/CheckoutForm'
 import MainHeading from '@/components/MainHeading'
 export default function CartPage() {
   return (

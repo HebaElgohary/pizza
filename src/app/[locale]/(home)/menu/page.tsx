@@ -1,12 +1,13 @@
 import React from 'react'
 import { getProductsByCategories } from '@/server/db/products'
-import { categoryWithPayLoad } from '../../../types/productWithPayLoad';
+import { categoryWithPayLoad } from '../../../../types/productWithPayLoad';
 import Image from 'next/image';
 import MenuButton from '@/components/MenuButton/index'
 import { formatCurrency } from '@/lib/formatters';
+import { getCurrentLocale } from '@/lib/getCurrentLocale';
 export default async function menu() {
   const categories:categoryWithPayLoad[]=await getProductsByCategories()
-
+const locale=await getCurrentLocale()
   return (
   <main className='container  '>
 {

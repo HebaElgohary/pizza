@@ -1,10 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import { NavBar } from "./NavBar";
-import { Button } from "../ui/button";
 import { PrefetchOnHoverLink } from "../Link";
 import { Routes } from "@/constants/enums";
-export default function Index() {
+import { getCurrentLocale } from "@/lib/getCurrentLocale";
+import { getDictionary } from "@/app/[locale]/dictionaries";
+
+export default async function Index( {className}:{className?:string}) {
+
+  const locale=await getCurrentLocale()
+  const {nav}=await getDictionary(locale)
   return (
     <header className="container flex justify-between items-center">
       <PrefetchOnHoverLink href={Routes.ROOT}>
@@ -14,17 +19,18 @@ export default function Index() {
             width={110}
             height={60}
             alt="logo"
+            className="!p-2 "
             priority
           />
           <p
             className="text-primary text-lg font-bold md:font-extrabold md:text-xl lg:text-2xl !ml-3"
             style={{ fontFamily: 'cursive' }}
           >
-            Pizzanova
+            {nav.logo}
           </p>
         </span>
       </PrefetchOnHoverLink>
-      <NavBar />
+      <NavBar locale={locale} nav={nav} className={className}/>
     </header>
   );
 }

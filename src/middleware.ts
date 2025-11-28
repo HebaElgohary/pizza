@@ -3,7 +3,6 @@ import type { NextRequest } from 'next/server'
 import{match as matchLocale} from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator';
 import { i18n, LanguageType } from './i18n.config';
-import { headers } from 'next/headers';
  
 function getLocale(request:NextRequest) : string  {
 

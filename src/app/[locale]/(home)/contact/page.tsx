@@ -1,26 +1,26 @@
 import React from "react";
 import { Mail, Phone, MapPin, Facebook, Linkedin, Github } from "lucide-react"; // icons
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
-import { getDictionary } from "../dictionaries";
+import { getDictionary } from "../../dictionaries";
 
 export default async function Contact() {
-   const locale=await getCurrentLocale()
-    const {contact}= await getDictionary(locale);
+  const locale = await getCurrentLocale();
+  const { contact } = await getDictionary(locale);
   return (
     <main className="container !py-16 !mx-auto !px-11">
       {/* Title */}
-      <h1 className="text-a4xl font-extrabold text-center text-primary !mb-4">
+      <h1 className="text-4xl font-extrabold text-center text-primary !mb-4">
         {contact.title}
       </h1>
-      <p className="text-center text-gray-500 !max-w-2xl !mx-auto !mb-12 leading-relaxed">
-       {contact.description}
+      <p className="text-center text-lg text-gray-500 !max-w-2xl !mx-auto !mb-12 leading-relaxed">
+        {contact.description}
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
         {/* Contact Info */}
         <div className="bg-gradient-to-br from-primary/5 to-primary/10 rounded-2xl shadow-md !p-8 flex flex-col gap-6">
           <h2 className="text-2xl font-semibold text-primary !mb-4">
-           {contact.getTouch}
+            {contact.getTouch}
           </h2>
           <div className="flex items-center gap-4">
             <Phone className="text-primary w-6 h-6" />
