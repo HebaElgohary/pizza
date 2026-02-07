@@ -5,6 +5,7 @@
     "about": "About",
     "contact": "Contact",
     "login": "Login",
+    "logout":"Log out",
     "langBtn": "English"
   },
 
@@ -80,9 +81,7 @@
       "btn2": "Order"
     }
   },
-  "menu":{
-    "category":""
-  },
+
   "contact": {
     "title": "Contact Us",
     "description": "We'd love to hear from you! Have a question, feedback, or a business inquiry? Drop us a line and we’ll get back to you shortly.",
@@ -98,55 +97,82 @@
     "msg": "Your Message ",
     "btn": "Send Message"
   },
-  "login":
-  {
-    "title":"Welcome Back",
-  "data":[
-    {
-      "label": "Email",
-      "name": "Email",
-      "type": "email",
-      "placeholder": "Enter your Email"
-    },
-    {
-      "label": "Password",
-      "name": "Password",
-      "type": "password",
-      "placeholder": "Enter your Password"
-    }
-  ],
-   "p":"Don't have an account",
-  "span":"Sign up",
-  "btn":"Login"
-},
-  "register":
-  { "title":"Register",
-  "data":
-  [
-    
-    {
-      "label": "Name",
-      "name": "Name",
-      "placeholder": "Enter your Name "
-    },
-    {
-      "label": "Email",
-      "name": "Email",
-      "placeholder": "Enter your Email"
-    },
-    {
-      "label": "password",
-      "name": "password",
-      "placeholder": "enter your password"
-    },
-    {
-      "label": "Confirm password",
-      "name": "confirmPassword",
-      "placeholder": "Re-enter your password"
-    }
-  ],
-  "p":"already have an account",
-  "span":"Log in",
-  "btn":"Register"
-}
+  "login": {
+    "title": "Welcome Back",
+    "data": [
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your Password"
+      }
+    ],
+    "p": "Don't have an account",
+    "span": "Sign up",
+    "btn": "Login"
+  },
+  "register": {
+    "title": "Register",
+    "data": [
+      {
+        "label": "Name",
+        "name": "name",
+        "placeholder": "Enter your Name "
+      },
+      {
+        "label": "Email",
+        "name": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "password",
+        "name": "password",
+        "placeholder": "enter your password"
+      },
+      {
+        "label": "Confirm password",
+        "name": "confirmPassword",
+        "placeholder": "Re-enter your password"
+      }
+    ],
+    "p": "already have an account",
+    "span": "Log in",
+    "btn": "Register"
+  },
+  "messages": {
+    "userNotFound": "User not found",
+    "incorrectPassword": "Incorrect password",
+    "loginSuccessful": "Login successful",
+    "unexpectedError": "An unexpected error occurred",
+    "userAlreadyExists": "User already exists.",
+    "accountCreated": "Account created successfully",
+    "updateProfileSucess": "Profile updated successfull",
+    "categoryAdded": "Category added successfully",
+    "updatecategorySucess": "Category updated successfull",
+    "deleteCategorySucess": "Category deleted successfull",
+    "productAdded": "Product added successfully",
+    "updateProductSucess": "Product updated successfull",
+    "deleteProductSucess": "Product deleted successfull",
+    "updateUserSucess": "User updated successfull",
+    "deleteUserSucess": "User deleted successfull"
+  },
+  "validations": {
+    "emailRequired": " Email is required ",
+    "nameRequired": "Name is required ",
+    "passwordRequired": "Password is required ",
+    "emailValid": "Enter a valid Email",
+    "passwordValid": "Password must contain uppercase, lowercase, number, and special character",
+    "nameValid": "Enter a valid Name ",
+    "confirmPassword": "Doesn't match password",
+    "smallPassword": "Password must be at least 8 characters long",
+    "confirmPasswordRequired": "Confirm Password is required",
+    "passwordMismatch": "Password do not match",
+    "nameMin": "name must be at least 2 characters"
+  }
 }

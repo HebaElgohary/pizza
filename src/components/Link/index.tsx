@@ -38,7 +38,7 @@ export function PrefetchOnHoverLink({
         try {
           router.prefetch(href.toString());
         } catch {
-          /* ignore errors */
+          /* ignore errors */ 
         }
         prefetchRef.current = true;
       }

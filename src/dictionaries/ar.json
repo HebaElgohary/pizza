@@ -5,6 +5,8 @@
     "about": "من نحن",
     "contact": "تواصل معنا",
     "login": "تسجيل الدخول",
+    "logout": "تسجيل خروج",
+
     "langBtn": "العربية"
   },
 
@@ -103,32 +105,30 @@
     "btn": "إرسال"
   },
 
-  "login":
-  {
-    "title":"مرحبا بعودتك",
-    "data":[
+  "login": {
+    "title": "مرحبا بعودتك",
+    "data": [
       {
         "label": "البريد الإلكتروني",
-        "name": "Email",
+        "name": "email",
         "type": "email",
         "placeholder": "أدخل بريدك الإلكتروني"
       },
       {
         "label": "كلمة المرور",
-        "name": "Password",
+        "name": "password",
         "type": "password",
         "placeholder": "أدخل كلمة المرور"
       }
     ],
-      "p":" ليس لديك حساب   ",
-  "span":" انشاء حساب ",
-  "btn":"تسجيل الدخول   "
+    "p": " ليس لديك حساب   ",
+    "span": " انشاء حساب ",
+    "btn": "تسجيل الدخول   "
   },
 
-  "register":
-  {
-    "title":"تسجيل حساب",
-    "data":[
+  "register": {
+    "title": "تسجيل حساب",
+    "data": [
       {
         "label": "الاسم",
         "name": "Name",
@@ -150,10 +150,40 @@
         "placeholder": "أعد إدخال كلمة المرور"
       }
     ],
-      "p":"لديك حساب بالفعل",
-  "span":"تسجيل دخول ",
-  "btn":"انشاء حساب "
+    "p": "لديك حساب بالفعل",
+    "span": "تسجيل دخول ",
+    "btn": "انشاء حساب "
+  },
+
+  "messages": {
+    "userNotFound": "المستخدم غير موجود",
+    "incorrectPassword": "كلمة المرور غير صحيحة",
+    "loginSuccessful": "تم تسجيل الدخول بنجاح",
+    "unexpectedError": "حدث خطأ غير متوقع",
+    "userAlreadyExists": "المستخدم موجود بالفعل",
+    "accountCreated": "تم إنشاء الحساب بنجاح",
+    "updateProfileSucess": "تم تحديث الملف الشخصي بنجاح",
+    "categoryAdded": "تمت إضافة الفئة بنجاح",
+    "updatecategorySucess": "تم تحديث الفئة بنجاح",
+    "deleteCategorySucess": "تم حذف الفئة بنجاح",
+    "productAdded": "تمت إضافة المنتج بنجاح",
+    "updateProductSucess": "تم تحديث المنتج بنجاح",
+    "deleteProductSucess": "تم حذف المنتج بنجاح",
+    "updateUserSucess": "تم تحديث المستخدم بنجاح",
+    "deleteUserSucess": "تم حذف المستخدم بنجاح"
+  },
+
+  "validations": {
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "nameRequired": "الاسم مطلوب",
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "emailValid": "يرجى إدخال بريد إلكتروني صالح",
+    "passwordValid": "يجب أن تحتوي كلمة المرور على حرف كبير وصغير ورقم ورمز خاص",
+    "nameValid": "يرجى إدخال اسم صالح",
+    "confirmPassword": "كلمة المرور غير مطابقة",
+    "smallPassword": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "nameMin": "يجب ان يحتوى لاسم على حرفين على الاقل"
   }
 }
-
-  

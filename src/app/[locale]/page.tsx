@@ -1,10 +1,6 @@
-// import Image from "next/image";
-// import { Button } from "@/components/ui/button";
-// import { PrefetchOnHoverLink } from "@/components/Link";
+
 import { Hero } from "@/app/[locale]/_components/Hero";
 import { BestSellers } from "@/app/[locale]/_components/BestSellers";
-// import { db } from "@/lib/prisma";
-
 import About from "@/app/[locale]/(home)/about/page";
 import Contact from "@/app/[locale]/(home)/contact/page";
 import MainHeading from "@/components/MainHeading";

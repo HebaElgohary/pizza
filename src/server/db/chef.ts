@@ -1,4 +1,3 @@
-import {cache} from '@/lib/cache'
 import { db } from "@/lib/prisma";
 import { Chef } from '@prisma/client';
 

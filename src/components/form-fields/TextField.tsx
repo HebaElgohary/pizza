@@ -1,7 +1,7 @@
 import { IFormField, Props } from "@/types/app";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
- 
+
 export const TextField = ({
   name,
   label,
@@ -14,7 +14,8 @@ export const TextField = ({
   defaultValue,
   readonly,
   className,
-  error,
+  data,
+  validationsError,
 }: Props) => {
   return (
     <div className="flex flex-col gap-1">
@@ -26,14 +27,18 @@ export const TextField = ({
         autoFocus={autoFocus}
         name={name}
         type={type}
+        defaultValue={data ? (data.get(name)?.toString() as string) : " "}
         id={name}
         placeholder={placeholder}
         className={`border rounded-lg !p-2 focus:outline-none focus:ring-2 focus:ring-primary transition ${className}`}
       />
-         {error &&
-        <p className="text-destructive !px-3">{error}</p>
-    }
+      
+      {validationsError &&  Array.isArray(validationsError?.[name]) &&
+        validationsError[name].map((err: string, i:number) => (
+          <p className="text-destructive !px-3" key={i}>
+            {err}
+          </p>
+        ))}
     </div>
- 
   );
 };

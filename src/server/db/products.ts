@@ -3,7 +3,6 @@ import {cache} from '@/lib/cache'
 import {categoryWithPayLoad, productWithPayLoad} from '@/types/productWithPayLoad'
 
 
-// type functionType=()=>productWithPayLoad[]
 
 export const getBestSellers = cache<(limit:number)=>Promise<productWithPayLoad[]>>
     (async (limit:number)  => {

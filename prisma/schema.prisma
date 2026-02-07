@@ -10,8 +10,9 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("DATABASE_URL")
 }
+//replace to  lib/prisma
 
 model User {
   id            String           @id @default(cuid())
@@ -27,14 +28,64 @@ model User {
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
   orders        OrderedProduct[]
+  accounts      Account[]
+  sessions      Session[]
+  role         UserRole @default(USER)
 }
+
+
+model Account {
+  id                 String       @id @default(cuid())
+  compoundId         String    @unique @map(name: "compound_id")
+  userId             String       @map(name: "user_id")
+  providerType       String    @map(name: "provider_type")
+  providerId         String    @map(name: "provider_id")
+  providerAccountId  String    @map(name: "provider_account_id")
+  refreshToken       String?   @map(name: "refresh_token")
+  accessToken        String?   @map(name: "access_token")
+  accessTokenExpires DateTime? @map(name: "access_token_expires")
+  createdAt          DateTime  @default(now()) @map(name: "created_at")
+  updatedAt          DateTime  @default(now()) @map(name: "updated_at")
+  user               User      @relation(fields: [userId], references: [id]) // opposite relation
+
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([providerId], name: "providerId")
+  @@index([userId], name: "userId")
+  @@map(name: "accounts")
+}
+
+model Session {
+  id           String      @id @default(cuid())
+  userId       String      @map(name: "user_id")
+  expires      DateTime
+  sessionToken String   @unique @map(name: "session_token")
+  accessToken  String   @unique @map(name: "access_token")
+  createdAt    DateTime @default(now()) @map(name: "created_at")
+  updatedAt    DateTime @default(now()) @map(name: "updated_at")
+  user         User     @relation(fields: [userId], references: [id]) // opposite relation
+
+  @@map(name: "sessions")
+}
+
+model VerificationRequest {
+  id         String      @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now()) @map(name: "created_at")
+  updatedAt  DateTime @default(now()) @map(name: "updated_at")
+
+  @@map(name: "verification_requests")
+}
+
 model Chef {
-  id String @id @default(cuid())
+  id   String @id @default(cuid())
   name String
   role String
-  img String
-  bio String
+  img  String
+  bio  String
 }
+
 
 model Product {
   id          String           @id @default(cuid())
@@ -74,6 +125,11 @@ enum ProductExtras {
   POTATO
 }
 
+enum UserRole{
+    ADMIN
+    USER 
+}
+
 model Extra {
   id           String        @id @default(cuid())
   name         ProductExtras
@@ -105,7 +161,7 @@ model OrderedProduct {
   order   Order  @relation(fields: [orderId], references: [id])
   orderId String
 
-  User      User?    @relation(fields: [userId], references: [id])
+  User      User?   @relation(fields: [userId], references: [id])
   userId    String?
   Product   Product @relation(fields: [productId], references: [id])
   productId String

@@ -1,18 +1,33 @@
-import FormFields from "@/components/form-fields/FormFields"
-import useFormFields from "@/hooks/useFormFields"
-import { FormProps, IFormField } from "@/types/app"
-import { ReactNode } from "react"
+import FormFields from "@/components/form-fields/FormFields";
+import useFormFields from "@/hooks/useFormFields";
+import { FormProps, IFormField } from "@/types/app";
 
+function Form({
+  slug,
+  translation,
+  dictionary,
+  data,
 
-function   Form({slug,translation,dictionary}:FormProps) {
-const getFormFields:IFormField[]= useFormFields({slug,translation,dictionary})
- 
+  validationsError,
+}: FormProps) {
+  const getFormFields: IFormField[] = useFormFields({
+    slug,
+    translation,
+    dictionary,
+    data
+  });
 
- const LoginForm=():ReactNode=>{
-    return getFormFields.map((field,i)=>{
-        return <FormFields key={i} {...field} error='wrong'/>
-    })
+  return getFormFields.map((field, i) => {
+    return (
+      <FormFields
+        key={i}
+        {...field}
+       data={data}
+        dictionary={dictionary}
+        validationsError={validationsError}
+      />
+    );
+  });
 }
-return <LoginForm />
-}
-export default Form
+
+export default Form;

@@ -5,11 +5,14 @@ import { PrefetchOnHoverLink } from "../Link";
 import { Routes } from "@/constants/enums";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { getDictionary } from "@/app/[locale]/dictionaries";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/db/auth";
 
 export default async function Index( {className}:{className?:string}) {
 
   const locale=await getCurrentLocale()
   const {nav}=await getDictionary(locale)
+  const initialSession=await getServerSession(authOptions);
   return (
     <header className="container flex justify-between items-center">
       <PrefetchOnHoverLink href={Routes.ROOT}>
@@ -30,7 +33,7 @@ export default async function Index( {className}:{className?:string}) {
           </p>
         </span>
       </PrefetchOnHoverLink>
-      <NavBar locale={locale} nav={nav} className={className}/>
+      <NavBar locale={locale} nav={nav} className={`  ${className}`} initialSession={initialSession}/>
     </header>
   );
 }

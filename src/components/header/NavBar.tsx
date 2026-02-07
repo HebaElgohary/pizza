@@ -1,36 +1,51 @@
 "use client";
-import { useRouter,usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { PrefetchOnHoverLink } from "@/components/Link";
 import { Routes, Pages, Languages } from "@/constants/enums";
 import { Button, buttonVariants } from "../ui/button";
-import { Menu  } from "lucide-react";
-import CartButton from "./CartButton";
+import { Menu } from "lucide-react";
+// import dynamic from "next/dynamic";
+
+import { dictType } from "@/types/translation";
 
 import { X } from "lucide-react";
 import { Locale } from "@/i18n.config";
+import CartButton from "./CartButton";
+import AuthBtn from "./AuthBtn";
+import { Session } from "next-auth";
 
+export function NavBar({
+  locale,
+  nav,
+  className,
+  initialSession
+}: {
+  locale: Locale;
+  nav: dictType["nav"];
+  className?: string;
+  initialSession:Session|null
+}) {
+  const pathName = usePathname();
+  const router = useRouter();
+  const changeLanguage = () => {
+    const newLocale =
+      locale === Languages.ENGLISH ? Languages.ARABIC : Languages.ENGLISH;
 
-export  function NavBar({locale,nav ,className}:{locale:Locale,nav:any,className?:string}) {
-
-  const pathName=usePathname()
-    const router=useRouter()
-  const changeLanguage=()=>{
-    const newLocale= locale===Languages.ENGLISH?Languages.ARABIC:Languages.ENGLISH
-  
-  const segments=  pathName.split('/')
-  segments[1]=newLocale
-  const newpath=segments.join('/')
-  router.push(newpath)
-  }
+    const segments = pathName.split("/");
+    segments[1] = newLocale;
+    const newpath = segments.join("/");
+    router.push(newpath);
+  };
   const [open, setOpen] = useState(false);
 
   const links = [
     { id: "menu", title: nav.menu, href: Routes.MENU },
     { id: "about", title: nav.about, href: Routes.ABOUT },
     { id: "contact", title: nav.contact, href: Routes.CONTACT },
-    { id: "login", title: nav.login, href: `${Routes.AUTH}/${Pages.LOGIN}` },
+    // { id: "login", title: nav.login, href: `${Routes.AUTH}/${Pages.LOGIN}` },
   ];
+
   return (
     <nav className="relative">
       <ul
@@ -40,24 +55,25 @@ export  function NavBar({locale,nav ,className}:{locale:Locale,nav:any,className
           <li key={link.id}>
             <PrefetchOnHoverLink
               href={`/${locale}/${link.href}`}
-              className={
-                link.href === `/${locale}/${Routes.AUTH}/${Pages.LOGIN}`
-                  ? `${buttonVariants({
-                      size: "lg",
-                    })} !p-6 !px-11 !text-xl !rounded-3xl !mx-4`
-                  : "hover:text-primary "
-              }
+              className={` !py-6 !py-11 !text-xl !rounded-3xl !mx-4 hover:text-primary `}
             >
               {link.title}
             </PrefetchOnHoverLink>
           </li>
         ))}
-         <li>
-          <Button className="text-lg text-black !p-2 bg-gray-200" onClick={changeLanguage}>{locale==Languages.ARABIC?'English':"العربية"}</Button>
+        <li>
+          <Button
+            className="text-lg text-black !p-2 bg-gray-200"
+            onClick={changeLanguage}
+          >
+            {locale == Languages.ARABIC ? "English" : "العربية"}
+          </Button>
         </li>
         <li>
-      <CartButton/>
-
+          <AuthBtn initialSession={initialSession} nav={nav} locale={locale}></AuthBtn>
+        </li>
+        <li>
+        {mounted&&  <CartButton />}
         </li>
       </ul>
       {open && (
@@ -85,9 +101,9 @@ export  function NavBar({locale,nav ,className}:{locale:Locale,nav:any,className
         {links.map((link) => (
           <li key={link.id}>
             <PrefetchOnHoverLink
-              href={link.href}
+              href={`/${locale}/${link.href}`}
               className={
-                link.href === `/${Routes.AUTH}/${Pages.LOGIN}`
+                link.href === `/${locale}/${Routes.AUTH}/${Pages.LOGIN}`
                   ? `${buttonVariants({
                       size: "sm",
                     })} !p-3 !px-3 !md:px-3 !text-xl !rounded-3xl !mx-4`
@@ -98,15 +114,22 @@ export  function NavBar({locale,nav ,className}:{locale:Locale,nav:any,className
             </PrefetchOnHoverLink>
           </li>
         ))}
-         <li>
-          <Button onClick={changeLanguage} className="text-lg text-black !p-2 bg-gray-200" >{locale==Languages.ARABIC?'English':"العربية"}</Button>
+        <li>
+          <Button
+            onClick={changeLanguage}
+            className="text-lg text-black !p-2 bg-gray-200"
+          >
+            {locale == Languages.ARABIC ? "English" : "العربية"}
+          </Button>
         </li>
         <li>
-      <CartButton/>
-
+          <AuthBtn initialSession={initialSession} locale={locale} nav={nav} ></AuthBtn>
+        </li>
+        <li>
+          <CartButton />
         </li>
       </ul>
-    
+
       {/* nav links in sm screens */}
     </nav>
   );

@@ -2,7 +2,7 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import { Pages } from "@/constants/enums";
 import { FormProps, IFormField } from "@/types/app";
 
-    export default  function useFormFields({slug,translation,dictionary}:FormProps) {
+    export default  function useFormFields({slug,dictionary}:FormProps) {
 
         const loginFields:IFormField[]=[
                 {

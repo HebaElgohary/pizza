@@ -1,34 +1,52 @@
+export interface IOption {
+  label: string;
+  value: string;
+}
 
-export  interface IOption{
-    label:string,
-    value:string
+export interface IFormFields {
+  slug: string;
+}
+export interface IFormFieldsVar extends IFormFields {
+  translation: any;
+}
+
+export interface FormProps extends IFormFieldsVar {
+  dictionary: any;
+  validationsError?: any;
+  data?: FormData;
 
 }
 
-export  interface IFormFields{
-    slug:string,
+export interface IFormField {
+  name: string;
+  label?: string;
+  type: "text" | "password" | "email" | "number" | "date" | "textarea";
+  placeholder?: string;
+  disabled?: boolean;
+  options?: IOption;
+  autoFocus?: boolean;
+  id?: string;
+  defaultValue?: string;
+  readonly?: boolean;
+  className?: string;
 }
-export interface IFormFieldsVar extends IFormFields{
-    translation:any
-}
-
-export interface FormProps extends IFormFieldsVar{
-    dictionary:any
-}
-
-export interface IFormField{
-    name:string,
-    label?:string,
-    type:'text'|'password'|'email'|'number'|'date'|'textarea'
-    ,placeholder?:string,
-    disabled?:boolean,
-    options?:IOption,
-    autoFocus?:boolean,
-    id?:string,
-    defaultValue?:string,
-    readonly?:boolean
-    ,className?:string
-
+export interface Props extends IFormField {
+  validationsError?: any;
+  dictionary?: any;
+  data?: FormData;
 
 }
-export interface Props extends IFormField{error:string}
+
+export type SignUpState =
+  | {
+      status: number;
+      error?: {
+        name?: string[];
+        email?: string[];
+        password?: string[];
+        confirmPassword?: string[];
+      };
+      formdata?: FormData;
+      message?: string;
+    }
+  

@@ -3,8 +3,7 @@ import { Roboto} from "next/font/google";
 import "../../[locale]/globals.css";
 import Header from '@/components/header'
 import ReduxProvider from "@/providers/ReduxProvider";
-// import { usePathname } from "next/navigation";
-
+import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,12 +28,14 @@ export default  function RootLayout({
 
   return (
     
-      
+      <NextAuthSessionProvider>
+
       <ReduxProvider>
 
        <Header />
         {children}
       </ReduxProvider>
+      </ NextAuthSessionProvider>
 
    
   );
