@@ -28,6 +28,9 @@ import {
 
 // -------------- Main Component ----------------
 export default function MenuBtn({ item }: { item: productWithPayLoad }) {
+
+  const session = useSession();
+    console.log("user ++++++++++++++++ session", session);
   const cart = useAppSelector((state: RootState) => state.cart!).items;
 
   const dispatch = useAppDispatch();
@@ -204,6 +207,7 @@ function RadioGroupDemo({
 
 // -------------- Checkbox component for Extras ----------------
 import { Checkbox } from "@/components/ui/checkbox";
+import { useSession } from "next-auth/react";
 
 export function CheckboxDemo({
   extras,

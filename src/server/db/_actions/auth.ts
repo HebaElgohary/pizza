@@ -8,12 +8,12 @@ import { loginSchema, registerSchema } from "@/validations/auth";
 import  bcrypt  from "bcrypt";
 
 export const login = async (
-  credentials: Record<"email" | "password", string > | undefined,
+  credentials: Record <"email" | "password", string > | undefined,
   locale: Locale
 ) => {
   const dict = await getDictionary(locale);
   const result = loginSchema(dict).safeParse(credentials);
-  if (result.success === false) {
+  if (!result.success) {
     return {
       error: result.error.flatten().fieldErrors,
       status: 400,
@@ -50,7 +50,7 @@ export const login = async (
 };
 
 export const signUp = async (prevState:SignUpState,formdata:FormData) : Promise<SignUpState> =>{
-  const locale=await getCurrentLocale()
+  const locale:Locale=await getCurrentLocale()
   const dict = await getDictionary(locale);
   const result= registerSchema(dict).safeParse(
     Object.fromEntries(formdata.entries())

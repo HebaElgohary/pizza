@@ -7,6 +7,8 @@ export interface dictType {
     login: string;
     langBtn: string;
     logout: string;
+    profile: string;
+    admin: string;
   };
 
   hero: {
@@ -107,6 +109,9 @@ export interface dictType {
     span: string;
     btn: string;
   };
+  profileForm:any,
+  adminForm:any
+
 
   validations: {
     emailRequired: string;

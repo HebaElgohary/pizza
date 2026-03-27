@@ -3,7 +3,6 @@ import { useRouter, usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { PrefetchOnHoverLink } from "@/components/Link";
 import { Routes, Pages, Languages } from "@/constants/enums";
-import { Button, buttonVariants } from "../ui/button";
 import { Menu } from "lucide-react";
 // import dynamic from "next/dynamic";
 
@@ -11,13 +10,13 @@ import { dictType } from "@/types/translation";
 
 import { X } from "lucide-react";
 import { Locale } from "@/i18n.config";
-import CartButton from "./CartButton";
-import AuthBtn from "./AuthBtn";
-import { Session } from "next-auth";
-import { useClientSession } from "@/hooks/useClientSession";
-import { UserRole } from "@prisma/client";
 
-export function NavBar({
+import { Session } from "next-auth";
+import { Button, buttonVariants } from "@/components/ui/button";
+import AuthBtn from "@/components/header/AuthBtn";
+import CartButton from "@/components/header/CartButton";
+
+export function AuthNavBar({
   locale,
   nav,
   className,
@@ -28,10 +27,6 @@ export function NavBar({
   className?: string;
   initialSession:Session|null
 }) {
-  const {session} = useClientSession(initialSession);
-  const role=session?.user?.role
-   const profile=role==UserRole.ADMIN?{id:"admin",title:nav.admin,href:Routes.ADMIN}:
-   {id:"profile",title:nav.profile,href:Routes.PROFILE}
   const pathName = usePathname();
   const router = useRouter();
   const changeLanguage = () => {
@@ -51,13 +46,11 @@ export function NavBar({
     { id: "contact", title: nav.contact, href: Routes.CONTACT },
     // { id: "login", title: nav.login, href: `${Routes.AUTH}/${Pages.LOGIN}` },
   ];
- 
-
 
   return (
     <nav className="relative">
       <ul
-        className={` hidden md:flex space-around gap-4 text-xl font-semibold items-center text-gray-500  ${className}`}
+        className={` hidden md:flex gap-8 text-xl font-semibold items-center text-gray-500  ${className}`}
       >
         {links.map((link) => (
           <li key={link.id}>
@@ -69,14 +62,6 @@ export function NavBar({
             </PrefetchOnHoverLink>
           </li>
         ))}
-          <li >
-            <PrefetchOnHoverLink
-              href={`/${locale}/${profile.href}`}
-              className={` !py-6 !py-11 !text-xl !rounded-3xl !mx-4 hover:text-primary `}
-            >
-              {profile.title}
-            </PrefetchOnHoverLink>
-          </li>
         <li>
           <Button
             className="text-lg text-black !p-2 bg-gray-200"

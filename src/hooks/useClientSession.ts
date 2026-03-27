@@ -17,5 +17,5 @@ export const useClientSession = (initialSession: Session | null) => {
       setCurrentSession(initialSession);
     }
   }, [initialSession]);
-  return { data: currentSession, status };
+  return { session: currentSession, status };
 };

@@ -6,6 +6,7 @@ import { getDictionary } from "../../dictionaries";
 export default async function Contact() {
   const locale = await getCurrentLocale();
   const { contact } = await getDictionary(locale);
+  
   return (
     <main className="container !py-16 !mx-auto !px-11">
       {/* Title */}

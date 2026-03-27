@@ -10,7 +10,7 @@ function FormFields(props:Props) {
  const t = type as unknown as InputTypes
 
  const renderField=():ReactNode=>{
-    if (t===InputTypes.EMAIL || t===InputTypes.TEXT){
+    if (t===InputTypes.EMAIL || t===InputTypes.TEXT ||t===InputTypes.NUMBER){
         return <TextField {...props} />
     }
     if (t===InputTypes.PASSWORD){

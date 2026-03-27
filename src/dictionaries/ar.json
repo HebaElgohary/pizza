@@ -7,7 +7,9 @@
     "login": "تسجيل الدخول",
     "logout": "تسجيل خروج",
 
-    "langBtn": "العربية"
+    "langBtn": "العربية",
+    "profile": "الملف الشخصى",
+    "admin": "المالك"
   },
 
   "hero": {
@@ -153,6 +155,66 @@
     "p": "لديك حساب بالفعل",
     "span": "تسجيل دخول ",
     "btn": "انشاء حساب "
+  },
+   "profileForm":{
+    
+    "title": "Welcome Back",
+    "data": [
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your Password"
+      }
+      ,
+      {
+        "label": "Phone",
+        "name": "phone",
+        "type": "number",
+        "placeholder": "Enter your Phone number"
+      }
+    ],
+    "p": "Don't have an account",
+    "span": "Sign up",
+    "btn": "Login"
+  
+
+  },
+  "adminForm":{
+    
+    "title": "Welcome Back",
+    "data": [
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your Password"
+      }
+      ,
+      {
+        "label": "Phone",
+        "name": "phone",
+        "type": "number",
+        "placeholder": "Enter your Phone number"
+      }
+    ],
+    "p": "Don't have an account",
+    "span": "Sign up",
+    "btn": "Login"
+  
+
   },
 
   "messages": {

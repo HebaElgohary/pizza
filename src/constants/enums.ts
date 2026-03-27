@@ -21,6 +21,8 @@ export enum Routes {
 
 export enum Pages {
   LOGIN = "signin",
+  ADMIN="admin",
+  PROFILE="profile",
   Register = "signup",
   FORGOT_PASSWORD = "forgot-password",
   CATEGORIES = "categories",

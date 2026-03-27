@@ -2,7 +2,7 @@
 import Form from "@/components/form-fields/Form";
 import React, { useRef, useState } from "react";
 import type { dictType } from "@/types/translation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "sonner";
 
 import { Pages, Routes } from "@/constants/enums";
@@ -18,7 +18,9 @@ export default function SignInForm({
   login: dictType["login"];
   locale: Locale;
 }) {
-  const router=useRouter()
+  const session = useSession();
+  console.log("user ++++++++++++++++ session", session);
+  const router = useRouter();
   const formData = useRef<HTMLFormElement>(null);
   const data = Object.fromEntries(new FormData(formData?.current || undefined));
   const [validationError, setValidationError] = useState({
@@ -32,7 +34,7 @@ export default function SignInForm({
     if (!formData.current) return;
 
     const data = Object.fromEntries(
-      new FormData(formData?.current || undefined)
+      new FormData(formData?.current || undefined),
     );
 
     console.log(data);
@@ -42,7 +44,8 @@ export default function SignInForm({
       const res = await signIn("credentials", {
         email: data.email,
         password: data.password,
-        redirect: false,locale
+        redirect: false,
+        locale,
       });
       if (res?.error) {
         console.log(res.error); // هنا هتشوفي validationError أو incorrect password
@@ -70,6 +73,8 @@ export default function SignInForm({
 
   return (
     <form
+
+    
       className="flex flex-col gap-4"
       ref={formData}
       onSubmit={(e) => handelSubmit(e)}
@@ -79,7 +84,6 @@ export default function SignInForm({
         translation={Languages.ENGLISH}
         dictionary={login.data}
         validationsError={validationError}
-      
       />
       <p className="text-sm">
         {login.p}{" "}

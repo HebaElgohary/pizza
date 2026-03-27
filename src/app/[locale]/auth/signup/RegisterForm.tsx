@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { useActionState } from "react";
+import React, { useActionState, useEffect } from "react";
 import type { SignUpState } from "@/types/app";
 
 export default function RegisterForm({
@@ -33,7 +33,7 @@ export default function RegisterForm({
   const router = useRouter();
 
   const [state, action, isPending] = useActionState(signUp, initialState);
-  React.useEffect(() => {
+  useEffect(() => {
   if (state.status === 500 || state.status === 409) {
     toast.error(state.message);
   }

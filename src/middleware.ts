@@ -1,14 +1,17 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import  { NextRequest ,NextResponse} from "next/server";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { i18n, Locale } from "./i18n.config";
 import { withAuth } from "next-auth/middleware";
 import { getToken } from "next-auth/jwt";
+
 import { Pages, Routes } from "./constants/enums";
+
+import { UserRole } from "@prisma/client";
 function getLocale(request: NextRequest): string {
   const negotiatorHeaders: Record<string, string> = Object.fromEntries(
     request.headers
+
   );
 
   const locales: Locale[] = i18n.locales;
@@ -36,15 +39,18 @@ export default withAuth(
     if (localeIsMissing) {
       const locale = getLocale(request);
       return NextResponse.redirect(
+
         new URL(`/${locale}${pathName}`, request.url)
       );
     }
     const locale = pathName.split("/")[1] as Locale;
     const isAuth = await getToken({ req: request });
+      const role=isAuth?.role
+
     const isAuthPage = pathName.startsWith(`/${locale}/${Routes.AUTH}`);
     const protectedRoute = [Routes.PROFILE, Routes.ADMIN];
     const isProtectedRoute = protectedRoute.some((route) => {
-      return pathName.startsWith(`/${locale}/${route}    `);
+      return pathName.startsWith(`/${locale}/${route}`);
     });
     // if not loggedIn and access protected route
     if (!isAuth && isProtectedRoute) {
@@ -57,9 +63,25 @@ export default withAuth(
         // if  loggedIn and access auth route
 
     if(isAuth && isAuthPage){
+      if (role === UserRole.ADMIN){
+        return NextResponse.redirect(new URL(`/${locale}/${Routes.ADMIN}`,request.url))
+      }
       return NextResponse.redirect(new URL(`/${locale}/${Routes.PROFILE}`,request.url))
+
     }
 
+    // logged in user && not admin && access admin
+    if(isAuth && role!==UserRole.ADMIN && pathName.startsWith(`/${locale}/${Routes.ADMIN}`)){
+      return NextResponse.redirect(new URL (`/${locale}/${Routes.PROFILE}`,request.url))
+
+      }
+          // logged in user &&  admin && access profile
+    if(isAuth && role==UserRole.ADMIN && pathName.startsWith(`/${locale}/${Routes.PROFILE}`)){
+      return NextResponse.redirect(new URL (`/${locale}/${Routes.ADMIN}`,request.url))
+
+      }
+  
+    
     requestHeaders.set("x-locale", locale);
     return NextResponse.next({ request: { headers: requestHeaders } });
   },

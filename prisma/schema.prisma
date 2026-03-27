@@ -21,7 +21,7 @@ model User {
   name          String
   image         String?
   phone         String?
-  streetAddrees String?
+  streetAddress String?
   postalCode    String?
   city          String?
   country       String?
@@ -31,6 +31,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   role         UserRole @default(USER)
+  @@map("Users")
 }
 
 

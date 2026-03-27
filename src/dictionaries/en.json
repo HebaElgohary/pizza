@@ -6,7 +6,9 @@
     "contact": "Contact",
     "login": "Login",
     "logout":"Log out",
-    "langBtn": "English"
+    "langBtn": "English",
+    "profile":"Profile",
+    "admin":"Admin"
   },
 
   "hero": {
@@ -145,6 +147,87 @@
     "span": "Log in",
     "btn": "Register"
   },
+  "profileForm":{
+ 
+    "title": "Welcome Back",
+    "data": [
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your Password"
+      }
+      ,
+      {
+        "label": "Phone",
+        "name": "phone",
+        "type": "number",
+        "placeholder": "Enter your Phone number"
+      }
+        ,
+      {
+        "label": "streetAddress",
+        "name": "streetAddress",
+        "type": "text",
+        "placeholder": "Enter your street Address"
+      }
+        ,
+      {
+        "label": "Postal code",
+        "name": "postalCode",
+        "type": "text",
+        "placeholder": "Enter your Postal Code "
+      }
+        ,
+      {
+        "label": "City",
+        "name": "City",
+        "type": "text",
+        "placeholder": "Enter your City"
+      }
+    ],
+    "p": "Don't have an account",
+    "span": "Sign up",
+    "btn": "Login"
+  
+  },
+  "adminForm":{
+     
+    "title": "Welcome Back",
+    "data": [
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter your Email"
+      },
+      {
+        "label": "Password",
+        "name": "password",
+        "type": "password",
+        "placeholder": "Enter your Password"
+      }
+      ,
+      {
+        "label": "Phone",
+        "name": "phone",
+        "type": "number",
+        "placeholder": "Enter your Phone number"
+      }
+    ],
+    "p": "Don't have an account",
+    "span": "Sign up",
+    "btn": "Login"
+  
+  }
+
+  ,
   "messages": {
     "userNotFound": "User not found",
     "incorrectPassword": "Incorrect password",
