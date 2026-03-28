@@ -6,7 +6,7 @@ import { Languages } from "@/constants/enums";
 import { Roboto } from "next/font/google";
 import { Locale } from "@/i18n.config";
 import { Metadata } from "next";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/Toast";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
 // import 'src/app/[locale]/globals.css'
@@ -38,7 +38,7 @@ export default async function HomeLayout({
         <NextAuthSessionProvider>
         <ReduxProvider>
           {children}
-          <Toaster className="!text-red-500" />
+          <Toaster className="text-red-500 bg-red-50" />
 
           <Footer />
         </ReduxProvider>

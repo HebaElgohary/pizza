@@ -71,7 +71,7 @@ export const signUp = async (prevState:SignUpState,formdata:FormData) : Promise<
     if (userExists) {
       return {
         message: dict.messages.userAlreadyExists,
-        status: 409,
+        status: 409, //conflict error
         formdata
       };
     }

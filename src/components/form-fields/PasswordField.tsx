@@ -19,6 +19,7 @@ function PasswordField({
   data,
   validationsError,
 }: Props) {
+  const dataObj=Object.fromEntries(data?.entries()||[]);
   const [show, setShow] = useState(false);
   return (
     <div className="flex flex-col gap-1">
@@ -29,7 +30,7 @@ function PasswordField({
         disabled={disabled}
         autoFocus={autoFocus}
         name={name}
-        defaultValue={data ? (data.get(name)?.toString() as string) : ""}
+        defaultValue={data ? (dataObj[name] as string) : ""}
         type={show ? "text" : type}
         id={name}
         placeholder={placeholder}

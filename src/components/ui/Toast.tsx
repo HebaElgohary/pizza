@@ -10,7 +10,7 @@ export function Toaster(props: ToasterProps) {
       position="top-right"
       richColors
       closeButton
-      expand
+      // expand
       {...props}
     />
   );
