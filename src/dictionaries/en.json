@@ -149,21 +149,20 @@
   },
   "profileForm":{
  
-    "title": "Welcome Back",
     "data": [
+       {
+        "label": "Name",
+        "name": "name",
+        "type": "text",
+        "placeholder": "Enter your Name"
+      },
       {
         "label": "Email",
         "name": "email",
         "type": "email",
         "placeholder": "Enter your Email"
       },
-      {
-        "label": "Password",
-        "name": "password",
-        "type": "password",
-        "placeholder": "Enter your Password"
-      }
-      ,
+   
       {
         "label": "Phone",
         "name": "phone",
@@ -172,7 +171,7 @@
       }
         ,
       {
-        "label": "streetAddress",
+        "label": "StreetAddress",
         "name": "streetAddress",
         "type": "text",
         "placeholder": "Enter your street Address"
@@ -187,43 +186,78 @@
         ,
       {
         "label": "City",
-        "name": "City",
+        "name": "city",
         "type": "text",
         "placeholder": "Enter your City"
       }
-    ],
-    "p": "Don't have an account",
-    "span": "Sign up",
-    "btn": "Login"
+          ,
+      {
+        "label": "Country",
+        "name": "country",
+        "type": "text",
+        "placeholder": "Enter your Country"
+      }
+    ]
   
   },
   "adminForm":{
      
-    "title": "Welcome Back",
-    "data": [
+     "data": [
+       {
+        "label": "Name",
+        "name": "name",
+        "type": "text",
+        "placeholder": "Enter your Name"
+      },
       {
         "label": "Email",
         "name": "email",
         "type": "email",
         "placeholder": "Enter your Email"
       },
-      {
-        "label": "Password",
-        "name": "password",
-        "type": "password",
-        "placeholder": "Enter your Password"
-      }
-      ,
+   
       {
         "label": "Phone",
         "name": "phone",
         "type": "number",
         "placeholder": "Enter your Phone number"
       }
-    ],
-    "p": "Don't have an account",
-    "span": "Sign up",
-    "btn": "Login"
+        ,
+      {
+        "label": "StreetAddress",
+        "name": "streetAddress",
+        "type": "text",
+        "placeholder": "Enter your street Address"
+      }
+        ,
+      {
+        "label": "Postal code",
+        "name": "postalCode",
+        "type": "text",
+        "placeholder": "Enter your Postal Code "
+      }
+        ,
+      {
+        "label": "City",
+        "name": "city",
+        "type": "text",
+        "placeholder": "Enter your City"
+      }
+          ,
+      {
+        "label": "Country",
+        "name": "country",
+        "type": "text",
+        "placeholder": "Enter your Country"
+      },
+         {
+        "label": "Admin",
+        "name": "role",
+        "type": "radio"
+      }
+      
+    ]
+    
   
   }
 

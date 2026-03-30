@@ -20,7 +20,7 @@ export interface FormProps extends IFormFieldsVar {
 export interface IFormField {
   name: string;
   label?: string;
-  type: "text" | "password" | "email" | "number" | "date" | "textarea";
+  type: "text" | "password"| "email" | "number" | "date" | "textarea" | any;
   placeholder?: string;
   disabled?: boolean;
   options?: IOption;

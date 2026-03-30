@@ -3,20 +3,22 @@ import { IFormFieldsVar, Props } from "@/types/app"
 import { ReactNode } from "react"
 import {TextField} from './TextField'
 import PasswordField from './PasswordField'
+import RadioField from "./RadioField"
 // import {Checkbox} from '@/components/ui/checkbox'
 
-function FormFields(props:Props) {
+function FormFields({...props}:Props) {
  const {type,validationsError}=props
- const t = type as unknown as InputTypes
 
  const renderField=():ReactNode=>{
-    if (t===InputTypes.EMAIL || t===InputTypes.TEXT ||t===InputTypes.NUMBER){
+    if (type===InputTypes.EMAIL ||type===InputTypes.TEXT ||type===InputTypes.NUMBER){
         return <TextField {...props} />
     }
-    if (t===InputTypes.PASSWORD){
+    if (type===InputTypes.PASSWORD){
         return <PasswordField {...props} />
     }
-  
+   if (type===InputTypes.RADIO){
+        return <RadioField {...props} />
+    }
     return <TextField {...props} />
  }
  return renderField()
