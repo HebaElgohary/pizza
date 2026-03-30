@@ -197,7 +197,8 @@
         "type": "text",
         "placeholder": "Enter your Country"
       }
-    ]
+    ],
+     "save":"save"
   
   },
   "adminForm":{
@@ -256,8 +257,8 @@
         "type": "radio"
       }
       
-    ]
-    
+    ],
+     "save":"save"
   
   }
 
