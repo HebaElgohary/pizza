@@ -7,10 +7,9 @@ import { getCurrentLocale } from '@/lib/getCurrentLocale'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/server/db/auth'
 import { UserRole } from '@prisma/client'
-import { FORMERR } from 'dns'
 import FormFields from '../form-fields/FormFields'
 
-export default async function index() {
+export default async function edituserform() {
   const session=await getServerSession(authOptions)
   const role=session?.user?.role
   const locale = await getCurrentLocale()
@@ -19,23 +18,21 @@ const dictionary=role==UserRole.ADMIN?dict.adminForm['data']:dict.profileForm['d
   const formFields = useFormFields({slug:`${Routes.PROFILE}`,dictionary:dictionary,translation:locale })
  console.log(formFields)
   return (
-    <div>index
-
-
-
-        <form action="">
+    <div >
+      
+        <form action="" className='flex !p-11 gap-5 flex-col md:flex-row justify-center '>
             edituserform
-            <div>
+            <div className='w-full md:w-1/3 flex justify-center items-start'>
                 <Image
-                        src="/file.svg"
+                        src="/images/add-photo.jpg"
                         width={110}
                         height={60}
-                        alt="logo"
+                        alt="add photo"
                         className="!p-2 "
                         priority
                 ></Image>
             </div>
-            <div>
+            <div className='w-full md:w-2/3'>
               {formFields.map((field)=><div  key={field.id} >
               <FormFields {...field} validationsError={';'} />
               </div>)}
