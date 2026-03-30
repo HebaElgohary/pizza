@@ -11,10 +11,10 @@ import FormFields from '../form-fields/FormFields'
 
 export default async function edituserform({slug}:{slug:string}) {
   const session=await getServerSession(authOptions)
-  const role=session?.user?.role
+  // const role=session?.user?.role
   const locale = await getCurrentLocale()
   const dict=await getDictionary(locale)
-const dictionary= role==UserRole.ADMIN?dict.adminForm['data']:dict.profileForm['data']
+const dictionary= slug==UserRole.ADMIN?dict.adminForm['data']:dict.profileForm['data']
   const formFields = useFormFields({slug,dictionary,translation:locale })
  console.log(formFields)
   return (
