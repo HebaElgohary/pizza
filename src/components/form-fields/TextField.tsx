@@ -19,7 +19,7 @@ export const TextField = ({
 }: Props) => {
   return (
     <div className="flex flex-col gap-1">
-      <Label htmlFor={name} className="font-semibold !px-1">
+      <Label htmlFor={name} className="font-semibold !px-1 text-muted-background">
         {label}
       </Label>
       <Input
@@ -27,7 +27,7 @@ export const TextField = ({
         autoFocus={autoFocus}
         name={name}
         type={type}
-        defaultValue={data ? (data.get(name)?.toString() as string) : " "}
+        defaultValue={data ? (data.get(name)?.toString() as string) : ''}
         id={name}
         placeholder={placeholder}
         className={`border rounded-lg !p-2 focus:outline-none focus:ring-2 focus:ring-primary transition ${className}`}

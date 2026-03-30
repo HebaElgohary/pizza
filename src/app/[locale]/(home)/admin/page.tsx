@@ -1,14 +1,14 @@
 import React from "react";
 import EditUserForm from "../../../../components/EditUserForm/EditUserForm";
-import { Routes } from "@/constants/enums";
+import { Pages, Routes } from "@/constants/enums";
 export default function page() {
   return (
     <div
-      className="!min-h-[60vh]
+      className="!min-h-[50vh]  container
       text-red-500 
     "  
     >
-      <EditUserForm slug={Routes.ADMIN} />
+      <EditUserForm slug={Pages.ADMIN} />
     </div>
   );
 }
