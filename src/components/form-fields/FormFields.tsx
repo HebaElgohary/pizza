@@ -7,7 +7,7 @@ import RadioField from "./RadioField"
 // import {Checkbox} from '@/components/ui/checkbox'
 
 function FormFields({...props}:Props) {
- const {type,validationsError}=props
+ const {type}=props
 
  const renderField=():ReactNode=>{
     if (type===InputTypes.EMAIL || type===InputTypes.TEXT || type===InputTypes.NUMBER){

@@ -13,6 +13,7 @@ export const TextField = ({
   id,
   defaultValue,
   readonly,
+  user,
   className,
   data,
   validationsError,
@@ -25,9 +26,10 @@ export const TextField = ({
       <Input
         disabled={disabled}
         autoFocus={autoFocus}
+        readOnly={readonly}
         name={name}
         type={type}
-        defaultValue={data ? (data.get(name)?.toString() as string) : ''}
+        defaultValue={data ? (data.get(name)?.toString() as string) : user?.[name] }
         id={name}
         placeholder={placeholder}
         className={`border rounded-lg !p-2 focus:outline-none focus:ring-2 focus:ring-primary transition ${className}`}

@@ -6,11 +6,11 @@ import { getDictionary } from '@/app/[locale]/dictionaries'
 import { getCurrentLocale } from '@/lib/getCurrentLocale'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/server/db/auth'
-import { UserRole } from '@prisma/client'
+import { User, UserRole } from '@prisma/client'
 import FormFields from '../form-fields/FormFields'
 import { Button } from '../ui/button'
 
-export default async function edituserform({slug}:{slug:string}) {
+export default async function edituserform({slug,user}:{slug:string,user:User}) {
   const session=await getServerSession(authOptions)
   // const role=session?.user?.role
   const locale = await getCurrentLocale()
@@ -35,7 +35,7 @@ const dictionary= slug==Pages.ADMIN?dict.adminForm['data']:dict.profileForm['dat
             </div>
             <div className='w-full md:w-2/3 flex flex-col gap-2'>
               {formFields.map((field)=><div  key={field.id} >
-              <FormFields {...field} validationsError={';'} />
+              <FormFields {...field} user={user} validationsError={';'} />
               </div>)}
             <Button type='submit' className='!my-5'> {dict.adminForm.save} </Button>
            

@@ -1,3 +1,5 @@
+import { User } from "@prisma/client";
+
 export interface IOption {
   label: string;
   value: string;
@@ -34,6 +36,7 @@ export interface Props extends IFormField {
   validationsError?: any;
   dictionary?: any;
   data?: FormData;
+  user?:User
 
 }
 
