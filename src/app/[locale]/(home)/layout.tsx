@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto} from "next/font/google";
-import "../../[locale]/globals.css";
+import "../../globals.css";
 import Header from '@/components/header'
 import ReduxProvider from "@/providers/ReduxProvider";
 import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";

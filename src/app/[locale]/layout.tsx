@@ -1,7 +1,7 @@
 import Footer from "@/components/footer";
 import ReduxProvider from "@/providers/ReduxProvider";
 import type { ReactNode } from "react";
-import "../[locale]/globals.css";
+// import "../globals.css";
 import { Languages } from "@/constants/enums";
 import { Roboto } from "next/font/google";
 import { Locale } from "@/i18n.config";
