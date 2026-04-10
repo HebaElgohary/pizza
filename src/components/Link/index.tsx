@@ -25,7 +25,7 @@ export function PrefetchOnHoverLink({
   href: string;
   children: React.ReactNode;
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   const router = useRouter();
 

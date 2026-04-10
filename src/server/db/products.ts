@@ -4,8 +4,9 @@ import {categoryWithPayLoad, productWithPayLoad} from '@/types/productWithPayLoa
 
 
 
-export const getBestSellers = cache<(limit:number)=>Promise<productWithPayLoad[]>>
-    (async (limit:number)  => {
+export const getBestSellers = cache<(...args: unknown[])=>Promise<productWithPayLoad[]>>
+    (async (...args: unknown[])  => {
+    const limit = args[0] as number;
     const bestSellers = await db.product.findMany({
         include: {
             sizes: true,

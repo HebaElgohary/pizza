@@ -9,12 +9,12 @@ export interface IFormFields {
   slug: string;
 }
 export interface IFormFieldsVar extends IFormFields {
-  translation: any;
+  translation: unknown;
 }
 
 export interface FormProps extends IFormFieldsVar {
-  dictionary: any;
-  validationsError?: any;
+  dictionary: unknown;
+  validationsError?: unknown;
   data?: FormData;
 
 }
@@ -22,7 +22,7 @@ export interface FormProps extends IFormFieldsVar {
 export interface IFormField {
   name: string;
   label?: string;
-  type: "text" | "password"| "email" | "number" | "date" | "textarea" | any;
+  type: "text" | "password"| "email" | "number" | "date" | "textarea" | unknown;
   placeholder?: string;
   disabled?: boolean;
   options?: IOption;
@@ -33,8 +33,8 @@ export interface IFormField {
   className?: string;
 }
 export interface Props extends IFormField {
-  validationsError?: any;
-  dictionary?: any;
+  validationsError?: unknown;
+  dictionary?: unknown;
   data?: FormData;
   user?:User
 

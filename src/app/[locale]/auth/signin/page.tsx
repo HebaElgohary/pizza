@@ -2,9 +2,10 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import Header from "@/components/header";
 
 import SignInForm from "./SignInForm";
+import { Locale } from "@/i18n.config";
 
-export default async function SigninPage(props: any) {
-  const locale = props?.params?.locale ?? "en";
+export default async function SigninPage(props: { params?: { locale?: string } }) {
+  const locale = props.params?.locale as Locale ?? "en";
   const { login,validations } = await getDictionary(locale);
 
   return (

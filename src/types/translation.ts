@@ -109,8 +109,8 @@ export interface dictType {
     span: string;
     btn: string;
   };
-  profileForm:any,
-  adminForm:any
+  profileForm:unknown,
+  adminForm:unknown
 
 
   validations: {

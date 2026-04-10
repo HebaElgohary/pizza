@@ -19,7 +19,7 @@ function getLocale(request: NextRequest): string {
   let locale = "";
   try {
     locale = matchLocale(languages, locales, i18n.defaultLocale);
-  } catch (error: any) {
+  } catch (error: unknown) {
     locale = i18n.defaultLocale;
   }
   return locale;

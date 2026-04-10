@@ -13,10 +13,11 @@ import { Button } from '../ui/button'
 import { SignUpState } from '@/types/app'
 import { updateProfile } from './_actions/profile'
 import { Locale } from '@/i18n.config'
+import { dictType } from '@/types/translation'
 
 
-export default  function edituserform({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:any}) {
-  const dictionary= slug==Pages.ADMIN?dict.adminForm['data']:dict.profileForm['data']
+export default  function edituserform({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:dictType}) {
+  const dictionary= slug==Pages.ADMIN?dict?.adminForm['data']:dict?.profileForm['data']
   const formFields = useFormFields({slug,dictionary,translation:locale })
  console.log(formFields)
  const initialState:SignUpState={
@@ -46,7 +47,7 @@ export default  function edituserform({slug,user,locale,dict}:{slug:string,user:
               {formFields.map((field)=><div  key={field.id} >
               <FormFields {...field} user={user} validationsError={';'} />
               </div>)}
-            <Button type='submit' className='!my-5' disabled={pending}> {dict.adminForm.save} </Button>
+            <Button type='submit' className='!my-5' disabled={pending}> {dict?.adminForm.save} </Button>
            
             </div>
         </form>
