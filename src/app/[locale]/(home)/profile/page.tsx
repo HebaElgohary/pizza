@@ -10,10 +10,12 @@ import { Routes } from "@/constants/enums";
 export default async function page() {
   const session = await getServerSession(authOptions);
  const user=session?.user as User
+  const locale = await getCurrentLocale();
+  const dict = await getDictionary(locale); 
  
   return (
     <div className="!min-h-[70vh] ">
-      <EditUserForm slug={Routes.PROFILE} user={user } ></EditUserForm>
+      <EditUserForm slug={Routes.PROFILE} user={user } locale={locale}  dict={dict} ></EditUserForm>
     </div>
   );
 }

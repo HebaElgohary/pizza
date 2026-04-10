@@ -40,8 +40,7 @@ export interface Props extends IFormField {
 
 }
 
-export type SignUpState =
-  | {
+export type SignUpState = {
       status: number;
       error?: {
         name?: string[];

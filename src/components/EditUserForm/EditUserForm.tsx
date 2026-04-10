@@ -1,7 +1,8 @@
+'use client'
 import { Pages, Routes } from '@/constants/enums'
 import useFormFields from '@/hooks/useFormFields'
 import Image from 'next/image'
-import React from 'react'
+import React, { useActionState } from 'react'
 import { getDictionary } from '@/app/[locale]/dictionaries'
 import { getCurrentLocale } from '@/lib/getCurrentLocale'
 import { getServerSession } from 'next-auth'
@@ -9,19 +10,27 @@ import { authOptions } from '@/server/db/auth'
 import { User, UserRole } from '@prisma/client'
 import FormFields from '../form-fields/FormFields'
 import { Button } from '../ui/button'
+import { SignUpState } from '@/types/app'
+import { updateProfile } from './_actions/profile'
+import { Locale } from '@/i18n.config'
 
-export default async function edituserform({slug,user}:{slug:string,user:User}) {
-  const session=await getServerSession(authOptions)
-  // const role=session?.user?.role
-  const locale = await getCurrentLocale()
-  const dict=await getDictionary(locale)
-const dictionary= slug==Pages.ADMIN?dict.adminForm['data']:dict.profileForm['data']
+
+export default  function edituserform({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:any}) {
+  const dictionary= slug==Pages.ADMIN?dict.adminForm['data']:dict.profileForm['data']
   const formFields = useFormFields({slug,dictionary,translation:locale })
  console.log(formFields)
+ const initialState:SignUpState={
+  error:{},
+  status:0,
+  message:'',
+  formdata:new FormData(),
+ }
+ 
+ const [state,action,pending]= useActionState(updateProfile,initialState)
   return (
     <div >
       
-        <form action="" className='flex !p-11 gap-5 flex-col md:flex-row justify-center '>
+        <form action={action} className='flex !p-11 gap-5 flex-col md:flex-row justify-center '>
         
             <div className='w-full md:w-1/3 flex justify-center items-start'>
                 <Image
@@ -37,7 +46,7 @@ const dictionary= slug==Pages.ADMIN?dict.adminForm['data']:dict.profileForm['dat
               {formFields.map((field)=><div  key={field.id} >
               <FormFields {...field} user={user} validationsError={';'} />
               </div>)}
-            <Button type='submit' className='!my-5'> {dict.adminForm.save} </Button>
+            <Button type='submit' className='!my-5' disabled={pending}> {dict.adminForm.save} </Button>
            
             </div>
         </form>

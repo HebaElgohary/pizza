@@ -1,3 +1,7 @@
+console.log("DB:", process.env.DATABASE_URL);
+
+
+export const prisma = new PrismaClient();
 import { Environments } from "@/constants/enums";
 import { PrismaClient } from "@prisma/client";
 
@@ -6,7 +10,9 @@ import { PrismaClient } from "@prisma/client";
 //
 // Learn more:
 // https://pris.ly/d/help/next-js-best-practices
+
 const prismaConfig = require("./prisma.config");
+
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
@@ -14,9 +20,11 @@ export const db =
   globalForPrisma.prisma ??
   new PrismaClient({
     datasources: {
-      db: {
-        url: prismaConfig.databaseUrl, // <--- add your connection URL here
-      },
+    //   db: {
+    //     url: prismaConfig.url, // <--- add your connection URL here
+    //  directUrl: prismaConfig.directUrl, // <--- add your direct connection URL here 
+    //  provider: prismaConfig.provider
+    //   }
     },
     log:
       process.env.NODE_ENV === Environments.DEV
