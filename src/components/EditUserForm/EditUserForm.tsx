@@ -16,7 +16,7 @@ import { Locale } from '@/i18n.config'
 import { dictType } from '@/types/translation'
 
 
-export default  function edituserform({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:dictType}) {
+export default  function EditUserForm({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:dictType}) {
   const dictionary= slug==Pages.ADMIN?dict?.adminForm['data']:dict?.profileForm['data']
   const formFields = useFormFields({slug,dictionary,translation:locale })
  console.log(formFields)

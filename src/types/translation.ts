@@ -109,8 +109,32 @@ export interface dictType {
     span: string;
     btn: string;
   };
-  profileForm:unknown,
-  adminForm:unknown
+  profileForm:
+  {
+    "data": 
+       {
+        "label":string,
+        "name": string,
+        "type": string,
+        "placeholder": string
+      }[]
+    ,
+     "save":string
+  
+  },
+  adminForm:
+   {
+    "data": 
+       {
+        "label":string,
+        "name": string,
+        "type": string,
+        "placeholder": string
+      }[]
+    ,
+     "save":string
+  
+  },
 
 
   validations: {
