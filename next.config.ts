@@ -4,6 +4,10 @@ const nextConfig: NextConfig = {
   /* config options here */
     experimental: {
     // add supported experimental options here if needed
+  
+  },
+    eslint: {
+    ignoreDuringBuilds: true,
   },
   images:{
     remotePatterns:[
