@@ -11,7 +11,7 @@ import { PrismaClient } from "@prisma/client";
 // Learn more:
 // https://pris.ly/d/help/next-js-best-practices
 
-const prismaConfig = require("./prisma.config");
+// import prismaConfig from "./prisma.config";
 
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };

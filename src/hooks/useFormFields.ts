@@ -5,7 +5,7 @@ import { HTMLInputTypeAttribute } from "react";
 export default function useFormFields({ slug, dictionary }: FormProps) {
   const loginFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string,
+      label: dictionary0]?.label as string,
       name: dictionary[0]?.name as string,
       type: "email",
       placeholder: dictionary[0]?.placeholder as string,
