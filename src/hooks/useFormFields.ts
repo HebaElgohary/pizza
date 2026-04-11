@@ -2,142 +2,150 @@ import { Pages } from "@/constants/enums";
 import { FormProps, IFormField } from "@/types/app";
 import { HTMLInputTypeAttribute } from "react";
 
-export default function useFormFields({ slug, dictionary }: FormProps) {
+export default function useFormFields({
+  slug,
+  dictionary,
+}: FormProps): IFormField[] {
+  const get = (i: number) => dictionary?.[i];
+
   const loginFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string,
-      name: dictionary[0]?.name as string,
+      label: get(0)?.label as string,
+      name: get(0)?.name as string,
       type: "email",
-      placeholder: dictionary[0]?.placeholder as string,
+      placeholder: get(0)?.placeholder as string,
     },
     {
-      label: dictionary[1]?.label as string,
-      name: dictionary[1]?.name as string,
+      label: get(1)?.label as string,
+      name: get(1)?.name as string,
       type: "password",
-      placeholder: dictionary[1]?.placeholder as string,
+      placeholder: get(1)?.placeholder as string,
     },
   ];
+
   const signupFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string,
-      name: `${dictionary[0]?.name as string}`,
+      label: get(0)?.label as string,
+      name: get(0)?.name as string,
       type: "text",
-      placeholder: `${dictionary[0]?.placeholder as string}`,
+      placeholder: get(0)?.placeholder as string,
     },
     {
-      label: `${dictionary[1]?.label as string}` as string,
-      name: `${dictionary[1]?.name as string} `,
+      label: get(1)?.label as string,
+      name: get(1)?.name as string,
       type: "email",
-      placeholder: `${dictionary[1]?.placeholder as string}`,
+      placeholder: get(1)?.placeholder as string,
     },
     {
-      label: dictionary[2]?.label as string,
-      name: `${dictionary[2]?.name as string}`,
+      label: get(2)?.label as string,
+      name: get(2)?.name as string,
       type: "password",
-      placeholder: `${dictionary[2]?.placeholder as string}`,
+      placeholder: get(2)?.placeholder as string,
     },
     {
-      label: `${dictionary[3]?.label}` as string,
-      name: `${dictionary[3]?.name as string} `,
+      label: get(3)?.label as string,
+      name: get(3)?.name as string,
       type: "password",
-      placeholder: `${dictionary[3]?.placeholder as string}`,
+      placeholder: get(3)?.placeholder as string,
     },
   ];
+
   const adminFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string,
-      name: `${dictionary[0]?.name as string}`,
+      label: get(0)?.label as string,
+      name: get(0)?.name as string,
       type: "text",
-      placeholder: `${dictionary[0]?.placeholder}`,
+      placeholder: get(0)?.placeholder as string,
     },
     {
-      label: `${dictionary[1]?.label as string}`,
-      name: `${dictionary[1]?.name as string}`,
+      label: get(1)?.label as string,
+      name: get(1)?.name as string,
       type: "email",
-      placeholder: `${dictionary[1]?.placeholder as string}`,
+      placeholder: get(1)?.placeholder as string,
     },
     {
-      label: dictionary[2]?.label as string,
-      name: `${dictionary[2]?.name as string}`,
+      label: get(2)?.label as string,
+      name: get(2)?.name as string,
       type: "number",
-      placeholder: `${dictionary[2]?.placeholder as string}`,
+      placeholder: get(2)?.placeholder as string,
     },
     {
-      label: `${dictionary[3]?.label as string}`,
-      name: `${dictionary[3]?.name as string}`,
-      type: `${dictionary[3]?.type as string}`,
-      placeholder: `${dictionary[3]?.placeholder as string}`,
+      label: get(3)?.label as string,
+      name: get(3)?.name as string,
+      type: get(3)?.type as HTMLInputTypeAttribute,
+      placeholder: get(3)?.placeholder as string,
     },
     {
-      label: `${dictionary[4]?.label as string}`,
-      name: `${dictionary[4]?.name as string}`,
-      type: `${dictionary[4]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[4]?.placeholder as string}`,
+      label: get(4)?.label as string,
+      name: get(4)?.name as string,
+      type: get(4)?.type as HTMLInputTypeAttribute,
+      placeholder: get(4)?.placeholder as string,
     },
     {
-      label: `${dictionary[5]?.label as string}`,
-      name: `${dictionary[5]?.name as string}`,
-      type: `${dictionary[5]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[5]?.placeholder as string}`,
+      label: get(5)?.label as string,
+      name: get(5)?.name as string,
+      type: get(5)?.type as HTMLInputTypeAttribute,
+      placeholder: get(5)?.placeholder as string,
     },
     {
-      label: `${dictionary[6]?.label as string}`,
-      name: `${dictionary[6]?.name as string}`,
-      type: `${dictionary[6]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[6]?.placeholder as string}`,
+      label: get(6)?.label as string,
+      name: get(6)?.name as string,
+      type: get(6)?.type as HTMLInputTypeAttribute,
+      placeholder: get(6)?.placeholder as string,
     },
     {
-      label: `${dictionary[7]?.label as string}`,
-      name: `${dictionary[7]?.name as string}`, //role
-      type: `${dictionary[7]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[7]?.placeholder as string}`,
+      label: get(7)?.label as string,
+      name: get(7)?.name as string,
+      type: get(7)?.type as HTMLInputTypeAttribute,
+      placeholder: get(7)?.placeholder as string,
     },
   ];
+
   const profileFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string,
-      name: `${dictionary[0]?.name as string}`,
+      label: get(0)?.label as string,
+      name: get(0)?.name as string,
       type: "text",
-      placeholder: `${dictionary[0]?.placeholder as string}`,
+      placeholder: get(0)?.placeholder as string,
     },
     {
-      label: `${dictionary[1]?.label as string}`,
-      name: `${dictionary[1]?.name as string}`,
+      label: get(1)?.label as string,
+      name: get(1)?.name as string,
       type: "email",
-      placeholder: `${dictionary[1]?.placeholder as string}`,
+      placeholder: get(1)?.placeholder as string,
     },
     {
-      label: dictionary[2]?.label as string,
-      name: `${dictionary[2]?.name as string}`,
+      label: get(2)?.label as string,
+      name: get(2)?.name as string,
       type: "number",
-      placeholder: `${dictionary[2]?.placeholder as string}`,
+      placeholder: get(2)?.placeholder as string,
     },
     {
-      label: `${dictionary[3]?.label as string}`,
-      name: `${dictionary[3]?.name as string}`,
-      type: `${dictionary[3]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[3]?.placeholder as string}`,
+      label: get(3)?.label as string,
+      name: get(3)?.name as string,
+      type: get(3)?.type as HTMLInputTypeAttribute,
+      placeholder: get(3)?.placeholder as string,
     },
     {
-      label: `${dictionary[4]?.label as string}`,
-      name: `${dictionary[4]?.name as string}`,
-      type: `${dictionary[4]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[4]?.placeholder as string}`,
+      label: get(4)?.label as string,
+      name: get(4)?.name as string,
+      type: get(4)?.type as HTMLInputTypeAttribute,
+      placeholder: get(4)?.placeholder as string,
     },
     {
-      label: `${dictionary[5]?.label as string}`,
-      name: `${dictionary[5]?.name as string}`,
-      type: `${dictionary[5]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[5]?.placeholder as string}`,
+      label: get(5)?.label as string,
+      name: get(5)?.name as string,
+      type: get(5)?.type as HTMLInputTypeAttribute,
+      placeholder: get(5)?.placeholder as string,
     },
     {
-      label: `${dictionary[6]?.label as string}`,
-      name: `${dictionary[6]?.name as string}`,
-      type: `${dictionary[6]?.type as HTMLInputTypeAttribute}`,
-      placeholder: `${dictionary[6]?.placeholder as string}`,
+      label: get(6)?.label as string,
+      name: get(6)?.name as string,
+      type: get(6)?.type as HTMLInputTypeAttribute,
+      placeholder: get(6)?.placeholder as string,
     },
   ];
-  // const getFormFields=():IFormField[]=>{
+
   switch (slug) {
     case Pages.LOGIN:
       return loginFields;
