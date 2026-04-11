@@ -29,14 +29,14 @@ export const TextField = ({
         readOnly={readonly}
         name={name}
         type={type}
-        defaultValue={data ? (data.get(name)?.toString() as string) : user?.[name] }
+        defaultValue={data ? (data.get(name)?.toString() as string) : user?.name as string}
         id={name}
         placeholder={placeholder}
         className={`border rounded-lg !p-2 focus:outline-none focus:ring-2 focus:ring-primary transition ${className}`}
       />
       
-      {validationsError &&  Array.isArray(validationsError?.[name]) &&
-        validationsError[name].map((err: string, i:number) => (
+      {validationsError && Array.isArray((validationsError as Record<string, unknown>)?.[name]) &&
+        (validationsError as Record<string, string[]>)[name].map((err: string, i: number) => (
           <p className="text-destructive !px-3" key={i}>
             {err}
           </p>

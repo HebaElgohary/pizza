@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { HTMLInputTypeAttribute } from "react";
 
 export interface IOption {
   label: string;
@@ -9,12 +10,12 @@ export interface IFormFields {
   slug: string;
 }
 export interface IFormFieldsVar extends IFormFields {
-  translation: unknown;
+  translation: any;
 }
 
 export interface FormProps extends IFormFieldsVar {
-  dictionary: unknown;
-  validationsError?: unknown;
+  dictionary: any;
+  validationsError?: any;
   data?: FormData;
 
 }
@@ -22,7 +23,7 @@ export interface FormProps extends IFormFieldsVar {
 export interface IFormField {
   name: string;
   label?: string;
-  type: "text" | "password"| "email" | "number" | "date" | "textarea" | unknown;
+  type: "text" | "password"| "email" | "number" | "date" | "textarea"|'radio'|HTMLInputTypeAttribute ;
   placeholder?: string;
   disabled?: boolean;
   options?: IOption;
@@ -33,8 +34,8 @@ export interface IFormField {
   className?: string;
 }
 export interface Props extends IFormField {
-  validationsError?: unknown;
-  dictionary?: unknown;
+  validationsError?:any;
+  dictionary?: any;
   data?: FormData;
   user?:User
 

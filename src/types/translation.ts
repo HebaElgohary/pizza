@@ -129,7 +129,7 @@ export interface dictType {
         "label":string,
         "name": string,
         "type": string,
-        "placeholder": string
+        "placeholder"?: string
       }[]
     ,
      "save":string
