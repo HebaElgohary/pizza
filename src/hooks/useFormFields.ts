@@ -26,7 +26,7 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
     },
     {
       label: `${dictionary[1]?.label as string}` as string,
-      name: `${dictionary[1]?.name  as string } `,
+      name: `${dictionary[1]?.name as string} `,
       type: "email",
       placeholder: `${dictionary[1]?.placeholder as string}`,
     },
@@ -38,7 +38,7 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
     },
     {
       label: `${dictionary[3]?.label}` as string,
-      name: `${dictionary[3]?.name  as string } `,
+      name: `${dictionary[3]?.name as string} `,
       type: "password",
       placeholder: `${dictionary[3]?.placeholder as string}`,
     },
@@ -48,7 +48,7 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
       label: dictionary[0]?.label as string,
       name: `${dictionary[0]?.name as string}`,
       type: "text",
-      placeholder:`${dictionary[0]?.placeholder}`,
+      placeholder: `${dictionary[0]?.placeholder}`,
     },
     {
       label: `${dictionary[1]?.label as string}`,
@@ -86,7 +86,7 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
       type: `${dictionary[6]?.type as HTMLInputTypeAttribute}`,
       placeholder: `${dictionary[6]?.placeholder as string}`,
     },
-       {
+    {
       label: `${dictionary[7]?.label as string}`,
       name: `${dictionary[7]?.name as string}`, //role
       type: `${dictionary[7]?.type as HTMLInputTypeAttribute}`,
@@ -95,7 +95,7 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
   ];
   const profileFields: IFormField[] = [
     {
-      label: dictionary[0]?.label as string  ,
+      label: dictionary[0]?.label as string,
       name: `${dictionary[0]?.name as string}`,
       type: "text",
       placeholder: `${dictionary[0]?.placeholder as string}`,
@@ -151,6 +151,3 @@ export default function useFormFields({ slug, dictionary }: FormProps) {
       return [];
   }
 }
-// return getFormFields()
-
-// }
