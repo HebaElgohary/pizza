@@ -13,7 +13,7 @@ export interface IFormFieldsVar extends IFormFields {
   translation: any;
 }
 
-export interface FormProps extends IFormFieldsVar {
+export interface FormProps extends IFormFields {
   dictionary: any;
   validationsError?: any;
   data?: FormData;

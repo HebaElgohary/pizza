@@ -14,8 +14,12 @@ import { dictType } from '@/types/translation'
 
 
 export default  function EditUserForm({slug,user,locale,dict}:{slug:string,user:User ,locale?:Locale,dict?:dictType}) {
-  const dictionary= slug==Pages.ADMIN?dict?.adminForm['data']:dict?.profileForm['data']
-  const formFields = useFormFields({slug,dictionary,translation:locale })
+const dictionary =
+  slug === Pages.ADMIN
+    ? dict?.adminForm?.data ?? []
+    : dict?.profileForm?.data ?? [];
+
+const formFields = useFormFields({ slug, dictionary });  
  console.log(formFields)
  const initialState:SignUpState={
   error:{},
