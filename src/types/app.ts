@@ -10,10 +10,10 @@ export interface IFormFields {
   slug: string;
 }
 export interface IFormFieldsVar extends IFormFields {
-  translation: any;
+  translation?: any;
 }
 
-export interface FormProps extends IFormFields {
+export interface FormProps extends IFormFieldsVar {
   dictionary: any;
   validationsError?: any;
   data?: FormData;
