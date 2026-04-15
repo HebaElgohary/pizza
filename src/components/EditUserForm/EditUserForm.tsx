@@ -45,7 +45,7 @@ const formFields = useFormFields({ slug, dictionary });
                 ></Image>
             </div>
             <div className='w-full md:w-2/3 flex flex-col gap-2'>
-              {formFields.map((field)=><div  key={field.id} >
+              {formFields.map((field,i)=><div  key={field.name||i} >
               <FormFields {...field} user={user} validationsError={';'} />
               </div>)}
             <Button type='submit' className='!my-5' disabled={pending}> {dict?.adminForm.save} </Button>
