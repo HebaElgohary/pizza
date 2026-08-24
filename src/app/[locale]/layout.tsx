@@ -40,7 +40,7 @@ export default async function HomeLayout({
           {children}
           <Toaster className="text-red-500 bg-red-50" />
 
-          <Footer />
+          {/* <Footer /> */}
         </ReduxProvider>
         </NextAuthSessionProvider>
       </body>

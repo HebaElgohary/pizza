@@ -19,55 +19,130 @@ export default async function AboutContent() {
   return (
     <main className="bg-white text-gray-800">
       {/* HERO */}
-      <section className="container !mx-auto !px-6 !py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="!space-y-6">
-            <p className="inline-block text-sm font-medium text-primary/90 bg-primary/10 !px-3 !py-1 rounded-full border border-primary/20">
-              {about.h3}
-            </p>
+     <section className="relative container overflow-hidden bg-gradient-to-br from-white via-primary/5 to-orange-50">
+  <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
+  <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-orange-200/20 blur-3xl" />
 
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">
-              {about.h1} <span className="text-primary">{about.h2}</span>
-            </h1>
+  <div className="container mx-auto !px-6 !py-20 lg:!py-28 relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-            <p className="text-gray-600 !max-w-prose">{about.p}</p>
+      {/* Text */}
+      <div className="!space-y-5">
 
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/menu"
-                className="inline-flex items-center gap-2 bg-primary text-white !px-5 !py-3 rounded-md shadow hover:shadow-md transition"
-              >
-                {about.btn1}
-                <span className="w-6 h-6 rounded-xl border-white border-1 flex items-center justify-center p-">
-                  {" "}
-                  {locale == Languages.ARABIC && <MoveLeft />}{" "}
-                  {locale == Languages.ENGLISH && <MoveRight />}{" "}
-                </span>
-              </Link>
+        <span className="inline-flex items-center gap-2 rounded-full
+          bg-primary/10 border border-primary/20
+          !px-4 !py-2 text-xs font-semibold text-primary">
+          <Pizza className="w-4 h-4" />
+          {about.h3}
+        </span>
 
-              <a
-                href="#chefs"
-                className="inline-flex items-center gap-2 border border-gray-300 !px-5 !py-3 rounded-md text-gray-700 hover:bg-gray-100 transition"
-              >
-                {about.btn2}
-              </a>
-            </div>
-          </div>
+        <h1 className="text-3xl sm:text-2xl lg:text-4xl
+          font-extrabold tracking-tight leading-[1.05]
+          text-gray-900">
+          {about.h1}
+          <span className="block text-primary !mt-2">
+            {about.h2}
+          </span>
+        </h1>
 
-          <div className="flex justify-center md:justify-end">
-            <div className="w-full !max-w-md bg-gradient-to-b from-white to-primary/5 rounded-xl  overflow-hidden">
-              <Image
-                src={"/images/OIP (2).png"}
-                alt="Delicious pizza"
-                width={600}
-                height={520}
-                className="object-cover w-full h-full"
-                priority
-              />
-            </div>
-          </div>
+        <p className="max-w-xl text-md leading-8 text-gray-600">
+          {about.p}
+        </p>
+
+        <div className="flex flex-wrap gap-4 pt-2">
+
+          <Link
+            href="/menu"
+            className="group inline-flex items-center gap-3
+              rounded-xl bg-primary !px-6 !py-3.5
+              text-white font-semibold shadow-lg
+              shadow-primary/20
+              hover:-translate-y-0.5
+              hover:shadow-xl
+              transition-all"
+          >
+            {about.btn1}
+
+            <span className="flex h-7 w-7 items-center justify-center
+              rounded-full border border-white/50
+              group-hover:translate-x-1 transition-transform">
+              {locale === Languages.ARABIC
+                ? <MoveLeft className="w-4 h-4" />
+                : <MoveRight className="w-4 h-4" />
+              }
+            </span>
+          </Link>
+
+          <a
+            href="#chefs"
+            className="inline-flex items-center
+              rounded-xl border border-gray-300
+              bg-white !px-6 !py-3.5
+              font-semibold text-gray-700
+              hover:bg-gray-50
+              transition"
+          >
+            {about.btn2}
+          </a>
+
         </div>
-      </section>
+      </div>
+
+      {/* Image */}
+      <div className="relative flex justify-center w-full  lg:w-3/4 !mx-auto  lg:justify-end">
+
+        <div className="absolute w-60 h-60
+          rounded-full bg-primary/10 blur-2xl" />
+
+        <div className="relative w-full max-w-lg">
+
+          <div className="absolute -top-5 -right-5
+            w-22 h-22 rounded-full
+            border-8 border-primary/10" />
+
+          <div className="overflow-hidden rounded-[2rem]
+            shadow-2xl shadow-gray-300/40
+            transition-transform duration-500">
+
+            <Image
+              src="/images/OIP (2).png"
+              alt="Delicious pizza"
+              width={400}
+              height={400}
+              priority
+              className="w-full h-[420px] object-cover"
+            />
+
+          </div>
+
+          {/* Floating badge */}
+          <div className="absolute -bottom-6 -left-6
+            flex items-center gap-3
+            rounded-2xl bg-white
+            !px-5 !py-4 shadow-xl">
+
+            <div className="flex h-11 w-11 items-center justify-center
+              rounded-full bg-primary/10 text-primary">
+              <Star className="w-5 h-5 fill-current" />
+            </div>
+
+            <div>
+              <p className="font-bold text-gray-900">
+                4.9/5
+              </p>
+              <p className="text-xs text-gray-500">
+                Customer rating
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       {/* FEATURES */}
       <section className="container !mx-auto !px-6 !py-12">

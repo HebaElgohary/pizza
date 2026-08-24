@@ -43,7 +43,7 @@ export const cartSlice = createSlice({
   });
 
   if (existingItem) {
-    existingItem.quantity = (existingItem.quantity ?? 0) + 1;
+    existingItem.quantity +=1;
   } else {
     currentState.items.push({ ...action.payload, quantity: 1 });
   }

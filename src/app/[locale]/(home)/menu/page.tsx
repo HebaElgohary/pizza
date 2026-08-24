@@ -9,7 +9,7 @@ export default async function menu() {
   const categories:categoryWithPayLoad[]=await getProductsByCategories()
 const locale=await getCurrentLocale()
   return (
-  <main className='container  '>
+  <main className='container min-h-screen  '>
 {
   categories.map((category)=>
     <div key={category.id}>
