@@ -21,7 +21,7 @@ const locale=await getCurrentLocale()
   <div className="group bg-red-50 rounded-2xl shadow-md overflow-hidden transition-transform hover:scale-105 hover:shadow-xl">
     <div className="relative w-full h-48">
       <Image 
-        src={product.img} 
+        src={product.img||'/images/OIP (2).png'} 
         alt={product.name} 
         fill
         className="object-cover group-hover:scale-110 transition-transform"

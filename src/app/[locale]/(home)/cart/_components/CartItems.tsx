@@ -38,7 +38,7 @@ export default function CartItems() {
             className="flex items-center gap-4 bg-white shadow-md rounded-xl !p-4 hover:scale-[1.01] transition-all"
           >
             <Image
-              src={item.image}
+              src={item.image||'/images/OIP (2).png'}
               alt="item image"
               width={90}
               height={90}

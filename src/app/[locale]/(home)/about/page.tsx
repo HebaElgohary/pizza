@@ -19,7 +19,7 @@ export default async function AboutContent() {
   return (
     <main className="bg-white text-gray-800">
       {/* HERO */}
-     <section className="relative container overflow-hidden bg-gradient-to-br from-white via-primary/5 to-orange-50">
+     <section className="relative !px-auto overflow-hidden bg-gradient-to-br from-white via-primary/5 to-orange-50">
   <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
   <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-orange-200/20 blur-3xl" />
 

@@ -78,7 +78,7 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
 
         <DialogContent className="sm:max-w-[425px] md:max-w-[500px] max-h-[60vh] flex flex-col overflow-y-auto">
           <DialogHeader className="flex flex-col items-center !p-1">
-            <Image src={item.img} alt="pizza" width={200} height={100} />
+            <Image src={item.img||'/images/OIP (2).png'} alt="pizza" width={200} height={100} />
             <DialogTitle className="text-primary text-2xl">
               {item.name}
             </DialogTitle>
