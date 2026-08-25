@@ -1,8 +1,10 @@
 "use client";
+
 import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { formatCurrency } from "@/lib/formatters";
 import { Button } from "@/components/ui/button";
+
 import {
   Dialog,
   DialogClose,
@@ -13,12 +15,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+
 import { getItemQuantity } from "@/lib/CartQuantity";
 import { Label } from "@radix-ui/react-label";
 import { productWithPayLoad } from "@/types/productWithPayLoad";
 import { Size, ProductSizes, Extra } from "@prisma/client";
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { RootState } from "@/redux/store";
+
 import {
   addCartItem,
   increaseItemQuantity,
@@ -26,38 +31,74 @@ import {
   cartItem,
 } from "@/redux/features/cart/cartSlice";
 
-// -------------- Main Component ----------------
-export default function MenuBtn({ item }: { item: productWithPayLoad }) {
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/radio-group";
 
+import { Checkbox } from "@/components/ui/checkbox";
+import { useSession } from "next-auth/react";
+
+// --------------------------------------------------
+// Main Component
+// --------------------------------------------------
+
+export default function MenuBtn({
+  item,
+}: {
+  item: productWithPayLoad;
+}) {
   const session = useSession();
-    console.log("user ++++++++++++++++ session", session);
-  const cart = useAppSelector((state: RootState) => state.cart!).items;
+
+  const cart = useAppSelector(
+    (state: RootState) => state.cart!.items
+  );
 
   const dispatch = useAppDispatch();
+
   const defaultSize =
-    cart.find((product: cartItem) => product.id === item.id)?.size ||
-    item.sizes.find((p) => p.name === ProductSizes.SMALL);
+    cart.find(
+      (product: cartItem) => product.id === item.id
+    )?.size ||
+    item.sizes.find(
+      (size) => size.name === ProductSizes.SMALL
+    );
 
-  const defaultExtra = cart.find((p) => p.id === item.id)?.extras || [];
+  const defaultExtra =
+    cart.find(
+      (product: cartItem) => product.id === item.id
+    )?.extras || [];
 
-  const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
-  const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtra!);
+  const [selectedSize, setSelectedSize] =
+    useState<Size>(defaultSize!);
+
+  const [selectedExtras, setSelectedExtras] =
+    useState<Extra[]>(defaultExtra);
+
   const itemQuantity = getItemQuantity(
     cart,
     item.id,
     selectedSize?.id,
     selectedExtras
   );
-  const [totalPrice, setTotalPrice] = useState(item.basePrice);
-  useMemo(() => {
-    let extraPrice = 0;
-    for (const extra of selectedExtras) {
-      extraPrice += extra.price;
-    }
-    setTotalPrice(item.basePrice + selectedSize.price + extraPrice);
-  }, [selectedSize, selectedExtras]);
 
-  const handelAddToCart = (item: productWithPayLoad) => {
+  // Calculate total price
+  const totalPrice = useMemo(() => {
+    const extraPrice = selectedExtras.reduce(
+      (total, extra) => total + extra.price,
+      0
+    );
+
+    return (
+      item.basePrice +
+      (selectedSize?.price ?? 0) +
+      extraPrice
+    );
+  }, [item.basePrice, selectedSize, selectedExtras]);
+
+  const handleAddToCart = (
+    item: productWithPayLoad
+  ) => {
     dispatch(
       addCartItem({
         id: item.id,
@@ -69,145 +110,461 @@ export default function MenuBtn({ item }: { item: productWithPayLoad }) {
       })
     );
   };
+
   return (
     <Dialog>
-      <form>
-        <DialogTrigger asChild>
-          <Button className="!p-3 rounded-2xl">Add to cart</Button>
-        </DialogTrigger>
+      <DialogTrigger asChild>
+        <Button
+          className="
+            !w-full
+            !rounded-xl
+            !py-3
+            bg-primary
+            font-semibold
+            text-white
+            shadow-sm
+            transition-all
+            duration-300
+          
+            hover:-translate-y-0.5
+            hover:shadow-lg
+          "
+        >
+          Add to cart
+        </Button>
+      </DialogTrigger>
 
-        <DialogContent className="sm:max-w-[425px] md:max-w-[500px] max-h-[60vh] flex flex-col overflow-y-auto">
-          <DialogHeader className="flex flex-col items-center !p-1">
-            <Image src={item.img||'/images/OIP (2).png'} alt="pizza" width={200} height={100} />
-            <DialogTitle className="text-primary text-2xl">
-              {item.name}
-            </DialogTitle>
-            <DialogDescription>{item.description}</DialogDescription>
-          </DialogHeader>
+      <DialogContent
+        className="
+          !w-[calc(100%-2rem)]
+          !max-w-[520px]
+          h-[95%]
+!mb-11
+          !p-0
+          overflow-hidden
+          rounded-3xl
+          border-0
+          bg-white
+          shadow-2xl
+        "
+      >
+        {/* =========================================
+            HEADER / IMAGE
+        ========================================= */}
 
-          <div>
-            {/* Sizes */}
-            <div className="flex flex-col gap-2 !p-11 !pt-0">
-              <Label htmlFor="size" className="text-lg font-bold text-center">
-                Pick your size
-              </Label>
-              <RadioGroupDemo
-                sizes={item.sizes}
-                selectedSize={selectedSize}
-                setSelectedSize={setSelectedSize}
-                item={item}
-              />
+        <DialogHeader className="!space-y-0 !p-0">
+          <div className="relative h-52 w-full overflow-hidden sm:h-60">
+            <Image
+              src={
+                item.img ||
+                "/images/OIP (2).png"
+              }
+              alt={item.name}
+              fill
+              className="
+                object-cover
+                transition-transform
+                duration-700
+                hover:scale-105
+              "
+            />
+
+            {/* Image gradient */}
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-black/70
+                via-black/10
+                to-transparent
+              "
+            />
+
+            {/* Price */}
+            <div
+              className="
+                absolute
+                bottom-4
+                right-4
+                rounded-full
+                bg-white/95
+                !px-4
+                !py-2
+                shadow-lg
+                backdrop-blur
+              "
+            >
+              <span className="font-bold text-primary">
+                {formatCurrency(totalPrice)}
+              </span>
             </div>
 
-            {/* Extras */}
-            <div className="!p-11 !pt-3 flex flex-col gap-2">
-              <Label htmlFor="extra" className="text-lg font-bold text-center">
-                Any Extras?
-              </Label>
-              <CheckboxDemo
-                extras={item.extras}
-                selectedExtras={selectedExtras}
-                setSelectedExtras={setSelectedExtras}
-              />
+            {/* Product name */}
+            <div className="absolute bottom-4 left-5 right-20">
+              <DialogTitle
+                className="
+                  text-left
+                  text-2xl
+                  font-extrabold
+                  text-white
+                  drop-shadow-lg
+                  sm:text-3xl
+                "
+              >
+                {item.name}
+              </DialogTitle>
             </div>
           </div>
 
-          <DialogFooter className="!justify-center !py-3">
-            <DialogClose asChild>
-              {itemQuantity == 0 ? (
+          {/* Description */}
+          <div className="!px-6 !pt-5">
+            <DialogDescription
+              className="
+                text-left
+                text-sm
+                leading-6
+                text-gray-500
+              "
+            >
+              {item.description}
+            </DialogDescription>
+          </div>
+        </DialogHeader>
+
+        {/* =========================================
+            OPTIONS
+        ========================================= */}
+
+        <div
+          className="
+            max-h-[45vh]
+            overflow-y-auto
+            !px-6
+            !pb-6
+            !pt-5
+          "
+        >
+          {/* SIZE */}
+          <section>
+            <div className="!mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-bold text-gray-900">
+                  Choose your size
+                </h3>
+
+                <p className="!mt-1 text-xs text-gray-400">
+                  Select the perfect size for you
+                </p>
+              </div>
+
+              <span className="rounded-full bg-primary/10 !px-3 !py-1 text-xs font-semibold text-primary">
+                Required
+              </span>
+            </div>
+
+            <RadioGroup>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                {item.sizes.map((size) => (
+                  <label
+                    key={size.id}
+                    htmlFor={`size-${size.id}`}
+                    className={`
+                      group
+                      relative
+                      cursor-pointer
+                      rounded-2xl
+                      border
+                      !p-4
+                      transition-all
+                      duration-200
+                      ${
+                        selectedSize?.id === size.id
+                          ? "border-primary bg-primary/5 shadow-sm"
+                          : "border-gray-200 bg-white hover:border-primary/40 hover:bg-gray-50"
+                      }
+                    `}
+                  >
+                    <div className="flex items-center !space-x-3">
+                      <RadioGroupItem
+                        value={size.name}
+                        checked={
+                          selectedSize?.id === size.id
+                        }
+                        onClick={() =>
+                          setSelectedSize(size)
+                        }
+                        id={`size-${size.id}`}
+                        className="border-primary"
+                      />
+
+                      <div>
+                        <p
+                          className={`
+                            text-sm
+                            font-bold
+                            ${
+                              selectedSize?.id === size.id
+                                ? "text-primary"
+                                : "text-gray-700"
+                            }
+                          `}
+                        >
+                          {size.name}
+                        </p>
+
+                        <p className="!mt-1 text-xs text-gray-400">
+                          {formatCurrency(
+                            size.price +
+                              item.basePrice
+                          )}
+                        </p>
+                      </div>
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </RadioGroup>
+          </section>
+
+          {/* DIVIDER */}
+          <div className="!my-6 h-px bg-gray-100" />
+
+          {/* EXTRAS */}
+          <section>
+            <div className="!mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-base font-bold text-gray-900">
+                  Add extras
+                </h3>
+
+                <p className="!mt-1 text-xs text-gray-400">
+                  Make your pizza even better
+                </p>
+              </div>
+
+              <span className="rounded-full bg-gray-100 !px-3 !py-1 text-xs font-medium text-gray-500">
+                Optional
+              </span>
+            </div>
+
+            <CheckboxDemo
+              extras={item.extras}
+              selectedExtras={selectedExtras}
+              setSelectedExtras={setSelectedExtras}
+            />
+          </section>
+        </div>
+
+        {/* =========================================
+            FOOTER
+        ========================================= */}
+
+        <DialogFooter
+          className="
+            !m-0
+            !p-4
+            border-t
+            border-gray-100
+            bg-gray-50/80
+            backdrop-blur
+            sm:!p-5
+          "
+        >
+          {itemQuantity > 0 ? (
+            <div className="flex w-full items-center justify-between !space-x-4">
+              {/* Quantity */}
+              <div
+                className="
+                  flex
+                  items-center
+                  rounded-xl
+                  border
+                  border-gray-200
+                  bg-white
+                  !p-1
+                  shadow-sm
+                "
+              >
                 <Button
-                  className="!p-3 rounded-2xl w-1/3"
-                  onClick={() => {
-                    handelAddToCart(item);
-                  }}
-                >
-                  Add to cart {formatCurrency(totalPrice)}
-                </Button>
-              ) : (
-                <Button className="!p-3 rounded-2xl w-1/3">Done </Button>
-              )}
-            </DialogClose>
-            {itemQuantity > 0 ? (
-              <div className="flex bg-gray-100 gap-5 items-center !mx-auto">
-                <Button
-                  variant={"outline"}
-                  className=" !p-3 text-2xl text-primary font-bold"
-                  onClick={() => {
+                  type="button"
+                  variant="ghost"
+                  className="
+                    !h-9
+                    !w-9
+                    !p-0
+                    rounded-lg
+                    text-lg
+                    font-bold
+                    text-primary
+                    hover:bg-primary/10
+                  "
+                  onClick={() =>
                     dispatch(
                       decreaseItemQuantity({
                         id: item.id,
                         sizeId: selectedSize.id,
                         extras: selectedExtras,
                       })
-                    );
-                  }}
+                    )
+                  }
                 >
-                  -
+                  −
                 </Button>
-                <span>{itemQuantity}</span>
+
+                <span className="!w-9 text-center text-sm font-bold text-gray-800">
+                  {itemQuantity}
+                </span>
+
                 <Button
-                  variant={"outline"}
-                  className="outlined !p-3 text-2xl text-primary font-bold"
-                  onClick={() => {
+                  type="button"
+                  variant="ghost"
+                  className="
+                    !h-9
+                    !w-9
+                    !p-0
+                    rounded-lg
+                    text-lg
+                    font-bold
+                    text-primary
+                    hover:bg-primary/10
+                  "
+                  onClick={() =>
                     dispatch(
                       increaseItemQuantity({
                         id: item.id,
                         sizeId: selectedSize.id,
                         extras: selectedExtras,
                       })
-                    );
-                  }}
+                    )
+                  }
                 >
                   +
                 </Button>
               </div>
-            ) : null}
-          </DialogFooter>
-        </DialogContent>
-      </form>
+
+              {/* Done */}
+              <DialogClose asChild>
+                <Button
+                  className="
+                    !flex-1
+                    !rounded-xl
+                    !py-3
+                    font-bold
+                    shadow-md
+                    transition-all
+                    hover:shadow-lg
+                  "
+                >
+                  Done
+                </Button>
+              </DialogClose>
+            </div>
+          ) : (
+            <DialogClose asChild>
+              <Button
+                onClick={() =>
+                  handleAddToCart(item)
+                }
+                className="
+                  !w-full
+                  !rounded-xl
+                  !py-3
+                  text-sm
+                  font-bold
+                  shadow-md
+                  transition-all
+                  duration-300
+                  hover:-translate-y-0.5
+                  hover:shadow-xl
+                "
+              >
+                <span>Add to cart</span>
+
+                <span className="!mx-2 opacity-50">
+                  •
+                </span>
+
+                <span>
+                  {formatCurrency(totalPrice)}
+                </span>
+              </Button>
+            </DialogClose>
+          )}
+        </DialogFooter>
+      </DialogContent>
     </Dialog>
   );
 }
 
-// -------------- Radio group component ----------------
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// ==================================================
+// Radio Group
+// ==================================================
 
 function RadioGroupDemo({
   sizes,
   selectedSize,
   setSelectedSize,
-  item,
 }: {
   sizes: Size[];
   selectedSize: Size;
-  setSelectedSize: React.Dispatch<React.SetStateAction<Size>>;
-  item: productWithPayLoad;
+  setSelectedSize: React.Dispatch<
+    React.SetStateAction<Size>
+  >;
 }) {
   return (
     <RadioGroup>
-      {sizes.map((size) => (
-        <div key={size.id} className="flex items-center gap-3">
-          <RadioGroupItem
-            value={size.name}
-            checked={selectedSize.id === size.id}
-            onClick={() => {
-              setSelectedSize(size);
-            }}
-            id={`size-${size.id}`}
-            className="border-primary"
-          />
-          <Label htmlFor={`size-${size.id}`} className="text-gray-500">
-            {size.name} ({formatCurrency(size.price + item.basePrice)})
-          </Label>
-        </div>
-      ))}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        {sizes.map((size) => (
+          <label
+            key={size.id}
+            htmlFor={`size-${size.id}`}
+            className={`
+              cursor-pointer
+              rounded-2xl
+              border
+              !p-4
+              transition-all
+              ${
+                selectedSize?.id === size.id
+                  ? "border-primary bg-primary/5"
+                  : "border-gray-200 hover:border-primary/40"
+              }
+            `}
+          >
+            <div className="flex items-center !space-x-3">
+              <RadioGroupItem
+                value={size.name}
+                checked={
+                  selectedSize?.id === size.id
+                }
+                onClick={() =>
+                  setSelectedSize(size)
+                }
+                id={`size-${size.id}`}
+                className="border-primary"
+              />
+
+              <div>
+                <p className="text-sm font-bold text-gray-800">
+                  {size.name}
+                </p>
+
+                <p className="!mt-1 text-xs text-gray-400">
+                  {formatCurrency(size.price)}
+                </p>
+              </div>
+            </div>
+          </label>
+        ))}
+      </div>
     </RadioGroup>
   );
 }
 
-// -------------- Checkbox component for Extras ----------------
-import { Checkbox } from "@/components/ui/checkbox";
-import { useSession } from "next-auth/react";
+// ==================================================
+// Extras
+// ==================================================
 
 export function CheckboxDemo({
   extras,
@@ -216,35 +573,73 @@ export function CheckboxDemo({
 }: {
   extras: Extra[];
   selectedExtras: Extra[];
-  setSelectedExtras: React.Dispatch<React.SetStateAction<Extra[]>>;
+  setSelectedExtras: React.Dispatch<
+    React.SetStateAction<Extra[]>
+  >;
 }) {
   return (
-    <div className="flex flex-col gap-6">
-      {extras.map((extra) => (
-        <div key={extra.id} className="flex items-center gap-3">
-          <Checkbox
-            id={`extra-${extra.id}`}
-            className="border-primary"
-            value={extra.name}
-            checked={selectedExtras.some(
-              (selectedExtra: Extra) => selectedExtra.id === extra.id
-            )}
-            onCheckedChange={(checked) => {
-              if (checked) setSelectedExtras([...selectedExtras, extra]);
-              else {
-                setSelectedExtras(
-                  selectedExtras.filter(
-                    (selectedExtra) => selectedExtra.id !== extra.id
-                  )
-                );
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {extras.map((extra) => {
+        const isSelected = selectedExtras.some(
+          (selectedExtra) =>
+            selectedExtra.id === extra.id
+        );
+
+        return (
+          <label
+            key={extra.id}
+            htmlFor={`extra-${extra.id}`}
+            className={`
+              flex
+              cursor-pointer
+              items-center
+              justify-between
+              rounded-2xl
+              border
+              !p-4
+              transition-all
+              duration-200
+              ${
+                isSelected
+                  ? "border-primary bg-primary/5"
+                  : "border-gray-200 bg-white hover:border-primary/40 hover:bg-gray-50"
               }
-            }}
-          />
-          <Label htmlFor={`extra-${extra.id}`} className="text-gray-500">
-            {extra.name} {formatCurrency(extra.price)}
-          </Label>
-        </div>
-      ))}
+            `}
+          >
+            <div className="flex items-center !space-x-3">
+              <Checkbox
+                id={`extra-${extra.id}`}
+                className="border-primary"
+                checked={isSelected}
+                onCheckedChange={(checked) => {
+                  if (checked) {
+                    setSelectedExtras([
+                      ...selectedExtras,
+                      extra,
+                    ]);
+                  } else {
+                    setSelectedExtras(
+                      selectedExtras.filter(
+                        (selectedExtra) =>
+                          selectedExtra.id !==
+                          extra.id
+                      )
+                    );
+                  }
+                }}
+              />
+
+              <span className="text-sm font-medium text-gray-700">
+                {extra.name}
+              </span>
+            </div>
+
+            <span className="text-sm font-bold text-primary">
+              +{formatCurrency(extra.price)}
+            </span>
+          </label>
+        );
+      })}
     </div>
   );
 }

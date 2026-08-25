@@ -31,7 +31,7 @@ export default async function Menu() {
       </section>
 
       {/* ================= CATEGORIES ================= */}
-      <section className="container mx-auto !px-4 !pb-20">
+      <section className="container !mx-auto !px-4 md:!px-11 !pb-20">
         {categories.map((category, categoryIndex) => (
           <section
             key={category.id}
