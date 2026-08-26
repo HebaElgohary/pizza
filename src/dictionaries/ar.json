@@ -92,20 +92,48 @@
     }
   },
 
+
   "contact": {
-    "title": "اتصل بنا",
-    "description": "يسعدنا تواصلك معنا! هل لديك سؤال أو ملاحظة أو استفسار؟ اترك لنا رسالة وسنرد عليك قريبًا.",
+    "phone": "+20 123 456 7890",
+"mail": "hello@pizzanova.com",
+"address": "Menoufia, Egypt",
+    "title": "تواصل معنا",
+    "description": "هل لديك سؤال أو اقتراح أو ترغب ببساطة في التواصل معنا؟ نحن هنا لمساعدتك.",
     "getTouch": "تواصل معنا",
-    "phone": "01012121212",
-    "mail": "hello@example.com",
-    "address": "القاهرة، مصر",
+
+    "phoneLabel": "الهاتف",
+    "emailLabel": "البريد الإلكتروني",
+    "locationLabel": "العنوان",
+    "openingHours": "ساعات العمل",
+    "openingHoursValue": "10:00 صباحًا - 12:00 منتصف الليل",
+    "followUs": "تابعنا",
 
     "formTitle": "أرسل لنا رسالة",
+    "formDescription": "هل لديك سؤال أو اقتراح؟ أرسل لنا رسالة وسنقوم بالرد عليك في أقرب وقت ممكن.",
+
     "name": "الاسم",
     "email": "البريد الإلكتروني",
     "msg": "رسالتك",
-    "btn": "إرسال"
-  },
+    "btn": "إرسال الرسالة",
+
+    "responseTime": "عادةً ما نرد خلال 24 ساعة.",
+
+    "features": {
+      "freshIngredients": {
+        "title": "مكونات طازجة",
+        "description": "جودة في كل قضمة"
+      },
+      "fastDelivery": {
+        "title": "توصيل سريع",
+        "description": "بيتزا ساخنة حتى باب منزلك"
+      },
+      "madeWithCare": {
+        "title": "نُعدها بعناية",
+        "description": "مُحضّرة خصيصًا لعشاق البيتزا"
+      }
+    }
+  }
+,
 
 "login": {
   "title": "مرحبًا بعودتك",
