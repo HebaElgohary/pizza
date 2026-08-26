@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { removeCartItem } from "@/redux/features/cart/cartSlice";
 import { useEffect } from "react";
 import { cartItem } from "@/redux/features/cart/cartSlice";
+import { it } from "node:test";
 
 export default function CartItems() {
   const cart = useAppSelector((state: RootState) => state.cart?.items);
@@ -159,7 +160,7 @@ export default function CartItems() {
     hover:text-red-500
     hover:scale-105
   "
-                  onClick={() => dispatch(removeCartItem({ id: item.id }))}
+                  onClick={() => dispatch(removeCartItem({ id: item.id ,sizeId:item.size.id,extras:item.extras}))}
                 >
                   <TrashIcon className="h-4 w-4" />
                 </Button>

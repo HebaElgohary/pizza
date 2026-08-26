@@ -75,23 +75,32 @@ decreaseItemQuantity:(currentState,action:PayloadAction<{id:string,sizeId:string
 
   }
 )
-if (existingItem) {
+      if (!existingItem) return;
+
+if (existingItem.quantity > 1) {
   existingItem.quantity = (existingItem.quantity ?? 0) - 1;
 }
-  },
-    removeCartItem:(currentState,action:PayloadAction<{id:string}>)=>{
-        const existinItem=currentState.items.find((item)=>item.id===action.payload.id)
-        if(existinItem?.quantity===1){
-        currentState.items=   currentState.items.filter((item)=>
+else{
+       currentState.items=   currentState.items.filter((item)=>
             item.id!==action.payload.id
            )
+}
+  },
+  
+    removeCartItem:(currentState,action:PayloadAction<{id:string,sizeId:string,extras:Extra[]}>)=>{
+  const existingItem=currentState.items.find((item)=> {
+  const sameId = item.id === action.payload.id;
+  const sameSize = item.size.id === action.payload.sizeId;
+  const sameExtras = JSON.stringify(item.extras??[]) ===JSON.stringify( action.payload.extras??[]);
+  return sameId&& sameSize && sameExtras
 
-        }
-        else{
-            if (existinItem) {
-                existinItem.quantity = (existinItem.quantity ?? 1) - 1;
-            }
-        }
+  }   )
+       if(existingItem?.quantity){
+        currentState.items=currentState.items.filter((item)=>
+            item!==existingItem
+           )
+
+          }
     }
 ,
     removeItemFromCart:(currentState,action:PayloadAction<{id:string}>)=>{
