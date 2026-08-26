@@ -119,13 +119,37 @@
     "span": "Sign up",
     "btn": "Login"
   },
+ 
   "register": {
-    "title": "Register",
+    "title": "Create your account",
+
+    "welcome": "Welcome to our pizzeria",
+
+    "hero": {
+      "title": "Fresh pizza. Made with love.",
+      "description": "Create your account and discover delicious pizzas, customize your order, and enjoy a fast and easy checkout."
+    },
+
+    "features": {
+      "delicious": {
+        "title": "Delicious choices",
+        "description": "Classic & modern pizzas"
+      },
+      "delivery": {
+        "title": "Fast delivery",
+        "description": "Fresh food at your door"
+      }
+    },
+
+    "form": {
+      "description": "Create your account and start ordering your favorite pizza."
+    },
+
     "data": [
       {
         "label": "Name",
         "name": "name",
-        "placeholder": "Enter your Name "
+        "placeholder": "Enter your Name"
       },
       {
         "label": "Email",
@@ -133,9 +157,9 @@
         "placeholder": "Enter your Email"
       },
       {
-        "label": "password",
+        "label": "Password",
         "name": "password",
-        "placeholder": "enter your password"
+        "placeholder": "Enter your password"
       },
       {
         "label": "Confirm password",
@@ -143,10 +167,12 @@
         "placeholder": "Re-enter your password"
       }
     ],
-    "p": "already have an account",
+
+    "p": "Already have an account?",
     "span": "Log in",
     "btn": "Register"
-  },
+  }
+,
   "profileForm":{
  
     "data": [

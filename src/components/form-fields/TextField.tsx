@@ -1,4 +1,4 @@
-import { IFormField, Props } from "@/types/app";
+import { Props } from "@/types/app";
 import { Label } from "@radix-ui/react-label";
 import { Input } from "../ui/input";
 
@@ -9,38 +9,83 @@ export const TextField = ({
   placeholder,
   disabled,
   autoFocus,
-  options,
-  id,
-  defaultValue,
   readonly,
-  user,
   className,
   data,
   validationsError,
+  user,
 }: Props) => {
+
+  const value = data?.get(name)?.toString() ?? user?.name ?? "";
+
+  const errors =
+    validationsError &&
+    Array.isArray(
+      (validationsError as Record<string, unknown>)?.[name]
+    )
+      ? (validationsError as Record<string, string[]>)[name]
+      : [];
+
   return (
-    <div className="flex flex-col gap-1">
-      <Label htmlFor={name} className="font-semibold !px-1 text-muted-background">
+    <div className="!space-y-2">
+
+      <Label
+        htmlFor={name}
+        className="!px-1 text-sm font-semibold text-gray-700"
+      >
         {label}
       </Label>
+
       <Input
+        id={name}
+        name={name}
+        type={type}
         disabled={disabled}
         autoFocus={autoFocus}
         readOnly={readonly}
-        name={name}
-        type={type}
-        defaultValue={data ? (data.get(name)?.toString() as string) : user?.name as string}
-        id={name}
+        defaultValue={value}
         placeholder={placeholder}
-        className={`border rounded-lg !p-2 focus:outline-none focus:ring-2 focus:ring-primary transition ${className}`}
+        aria-invalid={errors.length > 0}
+        aria-describedby={
+          errors.length > 0 ? `${name}-error` : undefined
+        }
+        className={`
+          !h-12
+          !w-full
+          !rounded-xl
+          border-gray-200
+          bg-gray-50
+          !px-4
+          text-gray-900
+          transition-all
+          placeholder:text-gray-400
+          focus:border-primary
+          focus:bg-white
+          focus:ring-2
+          focus:ring-primary/20
+          disabled:cursor-not-allowed
+          disabled:opacity-60
+          ${errors.length > 0 ? "!border-destructive focus:!ring-destructive/20" : ""}
+          ${className ?? ""}
+        `}
       />
-      
-      {validationsError && Array.isArray((validationsError as Record<string, unknown>)?.[name]) &&
-        (validationsError as Record<string, string[]>)[name].map((err: string, i: number) => (
-          <p className="text-destructive !px-3" key={i}>
-            {err}
-          </p>
-        ))}
+
+      {errors.length > 0 && (
+        <div
+          id={`${name}-error`}
+          className="!space-y-1 !px-1"
+        >
+          {errors.map((error, index) => (
+            <p
+              key={index}
+              className="text-xs font-medium text-destructive"
+            >
+              {error}
+            </p>
+          ))}
+        </div>
+      )}
+
     </div>
   );
 };
