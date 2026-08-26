@@ -26,11 +26,9 @@ export interface dictType {
   about: {
     title: string;
     decription: string;
-
     h3: string;
     h1: string;
     h2: string;
-
     p: string;
     btn1: string;
     btn2: string;
@@ -55,6 +53,7 @@ export interface dictType {
 
     testmonials: {
       title: string;
+
       say: {
         id: string;
         p: string;
@@ -77,7 +76,6 @@ export interface dictType {
     phone: string;
     mail: string;
     address: string;
-
     formTitle: string;
     name: string;
     email: string;
@@ -85,57 +83,76 @@ export interface dictType {
     btn: string;
   };
 
-  login: {
-    title: string;
+  // ================= LOGIN =================
+login: {
+  title: string;
+  description: string;
+
+  welcomeBadge: string;
+
+  heroTitle: string;
+  heroDescription: string;
+
+  featureOneTitle: string;
+  featureOneDescription: string;
+
+  featureTwoTitle: string;
+  featureTwoDescription: string;
+
+  data: {
+    label: string;
+    name: string;
+    placeholder: string;
+  }[];
+
+  p: string;
+  span: string;
+  btn: string;
+};
+
+  // ================= REGISTER =================
+
+ register: {
+  title: string;
+
+  data: {
+    label: string;
+    name: string;
+    placeholder: string;
+  }[];
+
+  p: string;
+  span: string;
+  btn: string;
+};
+
+  // ================= PROFILE =================
+
+  profileForm: {
     data: {
       label: string;
       name: string;
       type: string;
       placeholder: string;
     }[];
-    p: string;
-    span: string;
-    btn: string;
+
+    save: string;
   };
 
-  register: {
-    title: string;
+  // ================= ADMIN =================
+
+  adminForm: {
     data: {
       label: string;
       name: string;
-      placeholder: string;
+      type: string;
+      placeholder?: string;
     }[];
-    p: string;
-    span: string;
-    btn: string;
-  };
-  profileForm:
-  {
-    "data": 
-       {
-        "label":string,
-        "name": string,
-        "type": string,
-        "placeholder": string
-      }[]
-    ,
-     "save":string
-  
-  },
-  adminForm:
-   {
-    "data": 
-       {
-        "label":string,
-        "name": string,
-        "type": string,
-        "placeholder"?: string
-      }[]
-    ,
-     "save":string
-  
-  },
 
+    save: string;
+  };
+
+  // ================= VALIDATIONS =================
 
   validations: {
     emailRequired: string;

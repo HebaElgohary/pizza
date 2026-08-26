@@ -99,27 +99,39 @@
     "msg": "Your Message ",
     "btn": "Send Message"
   },
-  "login": {
-    "title": "Welcome Back",
-    "data": [
-      {
-        "label": "Email",
-        "name": "email",
-        "type": "email",
-        "placeholder": "Enter your Email"
-      },
-      {
-        "label": "Password",
-        "name": "password",
-        "type": "password",
-        "placeholder": "Enter your Password"
-      }
-    ],
-    "p": "Don't have an account",
-    "span": "Sign up",
-    "btn": "Login"
-  },
- 
+"login": {
+  "title": "Welcome Back",
+  "description": "Sign in to your account and continue enjoying your favorite pizza.",
+
+  "welcomeBadge": "Welcome back to our pizzeria",
+
+  "heroTitle": "Good food starts with a good mood.",
+  
+  "heroDescription": "Sign in to order your favorite pizzas, customize your meals, and enjoy a fast and easy checkout.",
+
+  "featureOneTitle": "Delicious choices",
+  "featureOneDescription": "Classic & modern pizzas",
+
+  "featureTwoTitle": "Fast delivery",
+  "featureTwoDescription": "Fresh food at your door",
+
+  "data": [
+    {
+      "label": "Email",
+      "name": "email",
+      "placeholder": "Enter your email"
+    },
+    {
+      "label": "Password",
+      "name": "password",
+      "placeholder": "Enter your password"
+    }
+  ],
+
+  "p": "Don't have an account?",
+  "span": "Create one",
+  "btn": "Sign In"
+},
   "register": {
     "title": "Create your account",
 
