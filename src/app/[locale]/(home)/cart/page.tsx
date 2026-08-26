@@ -5,7 +5,7 @@ import MainHeading from '@/components/MainHeading'
 export default function CartPage() {
   return (
   <main>
-    <section className='section gap container  flex flex-col text-center !gap-11 min-h-screen'>
+    <section className='section gap container  flex flex-col text-center !gap-11 min-h-screen !my-11'>
         <MainHeading  subtitle='cart' title=' '></MainHeading>
         <div className='flex flex-col md:flex-row  gap-30'>
             <CartItems />

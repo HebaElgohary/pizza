@@ -7,173 +7,311 @@ import { useAppSelector } from "@/redux/hooks";
 import { getTotal } from "@/lib/CartQuantity";
 import { formatCurrency } from "@/lib/formatters";
 
-
 export default function CheckoutForm() {
-  const cart = useAppSelector((state) => state.cart.items);
+  const cart = useAppSelector(
+    (state) => state.cart.items
+  );
+
   const total = getTotal(cart);
+
+  if (!cart || cart.length === 0) {
+    return null;
+  }
+
   return (
-    cart &&
-    cart.length > 0 && (
-      <div className="grid gap-6 bg-gray-100 rounded-md !p-6 md:w-2/3">
-        <h2 className="text-2xl text-black font-semibold ">Checkout </h2>
-        <form>
-          <div className="grid gap-4 ">
-            <div className="grid gap-2 ">
-              <Label className="text-gray-500 font-bold flex " htmlFor="phone">
-                Phone{" "}
-              </Label>
-              <Input
-                  className="!p-2"
+    <div
+      className="
+        w-full
+        overflow-hidden
+        rounded-3xl
+        border
+        shadow-xl
+        border-gray-100
+        bg-white
+        // shadow-[0_15px_50px_rgb(0,0,0,0.08)]
+        md:!max-w-2xl
+      "
+    >
+      {/* =====================================
+          HEADER
+      ====================================== */}
 
-                id="phone "
-                placeholder="Enter your phone "
-                type="text"
-                name="phone"
-              ></Input>
-
-              <Label className="text-gray-500 font-bold flex" htmlFor="Address">
-                Street Address{" "}
-              </Label>
-              <Input
-                  className="!p-2"
-
-                id="Address "
-                placeholder="Enter your Address"
-                type="text"
-                name="Address"
-              ></Input>
-              <div className="flex gap-5">
-                <div>
-                  <Label className="text-gray-500 font-bold flex" htmlFor="postalCode">
-                    Postal Code{" "}
-                  </Label>
-                  <Input
-                  className="!p-2"
-
-                    id="postalCode "
-                    placeholder="Enter  postal Code "
-                    type="text"
-                    name="postalCode"
-                  ></Input>
-                </div>
-
-                <div>
-                  <Label className="text-gray-500 font-bold flex" htmlFor="City">
-                    City{" "}
-                  </Label>
-                  <Input
-                  className="!p-2"
-
-                    id="City "
-                    placeholder="Enter your City "
-                    type="text"
-                    name="City"
-                  ></Input>
-                </div>
-              </div>
-
-               <div className="w-1/2">
-                  <Label className="text-gray-500 font-bold flex" htmlFor="Country">
-                     Country{" "}
-                  </Label>
-                  <Input
-                  className="!p-2"
-                    id="Country "
-                    placeholder="Enter Country "
-                    type="text"
-                    name="Country"
-                  ></Input>
-                </div>
-
-            </div>
-          <Button className="w-full">Pay {formatCurrency(total)} $</Button>
-
+      <div
+        className="
+          border-b
+          border-gray-100
+          bg-gradient-to-br
+          from-primary/10
+          via-white
+          to-orange-50
+          !px-6
+          !py-7
+          sm:!px-8
+        "
+      >
+        <div className="flex items-center !space-x-3">
+          <div
+            className="
+              flex
+              h-11
+              w-11
+              shrink-0
+              items-center
+              justify-center
+              rounded-2xl
+              bg-primary
+              text-xl
+              shadow-md
+            "
+          >
+            🛵
           </div>
-        </form>
+
+          <div>
+            <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+              Checkout
+            </h2>
+
+            <p className="!mt-1 text-sm text-gray-500">
+              Enter your delivery details
+            </p>
+          </div>
+        </div>
       </div>
 
-//       <div className="bg-white shadow-lg rounded-xl p-6 md:w-2/3 space-y-6 border border-gray-100">
-//   <h2 className="text-2xl font-bold text-gray-800">Checkout</h2>
+      {/* =====================================
+          FORM
+      ====================================== */}
 
-//   <form className="space-y-5">
-//     {/* Phone */}
-//     <div className="space-y-2">
-//       <Label htmlFor="phone" className="text-gray-600 font-medium">
-//         Phone
-//       </Label>
-//       <Input
-//         className="p-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-primary"
-//         id="phone"
-//         placeholder="Enter your phone number"
-//         type="text"
-//         name="phone"
-//       />
-//     </div>
+      <form className="!space-y-6 !p-6 sm:!p-8">
 
-//     {/* Address */}
-//     <div className="space-y-2">
-//       <Label htmlFor="address" className="text-gray-600 font-medium">
-//         Street Address
-//       </Label>
-//       <Input
-//         className="p-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-primary"
-//         id="address"
-//         placeholder="123 Main Street"
-//         type="text"
-//         name="address"
-//       />
-//     </div>
+        {/* Phone */}
+        <div className="!space-y-2">
+          <Label
+            htmlFor="phone"
+            className="text-sm font-semibold text-gray-700"
+          >
+            Phone Number
+          </Label>
 
-//     {/* Postal & City */}
-//     <div className="flex gap-4">
-//       <div className="flex-1 space-y-2">
-//         <Label htmlFor="postalCode" className="text-gray-600 font-medium">
-//           Postal Code
-//         </Label>
-//         <Input
-//           className="p-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-primary"
-//           id="postalCode"
-//           placeholder="Enter postal code"
-//           type="text"
-//           name="postalCode"
-//         />
-//       </div>
+          <Input
+            id="phone"
+            placeholder="01XXXXXXXXX"
+            type="tel"
+            name="phone"
+            className="
+              !h-12
+              !rounded-xl
+              border-gray-200
+              bg-gray-50
+              !px-4
+              transition-all
+              placeholder:text-gray-400
+              focus:border-primary
+              focus:bg-white
+              focus:ring-2
+              focus:ring-primary/20
+            "
+          />
 
-//       <div className="flex-1 space-y-2">
-//         <Label htmlFor="city" className="text-gray-600 font-medium">
-//           City
-//         </Label>
-//         <Input
-//           className="p-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-primary"
-//           id="city"
-//           placeholder="Enter your city"
-//           type="text"
-//           name="city"
-//         />
-//       </div>
-//     </div>
+          <p className="text-xs text-gray-400">
+            We will use this number to contact you about your order.
+          </p>
+        </div>
 
-//     {/* Country */}
-//     <div className="w-1/2 space-y-2">
-//       <Label htmlFor="country" className="text-gray-600 font-medium">
-//         Country
-//       </Label>
-//       <Input
-//         className="p-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-primary"
-//         id="country"
-//         placeholder="Enter country"
-//         type="text"
-//         name="country"
-//       />
-//     </div>
+        {/* Street Address */}
+        <div className="!space-y-2">
+          <Label
+            htmlFor="address"
+            className="text-sm font-semibold text-gray-700"
+          >
+            Street Address
+          </Label>
 
-//     {/* Pay Button */}
-//     <Button className="w-full py-3 text-lg rounded-lg bg-primary text-white hover:opacity-90 transition-all">
-//       Pay {formatCurrency(total)}
-//     </Button>
-//   </form>
-// </div>
+          <Input
+            id="address"
+            placeholder="Enter your street address"
+            type="text"
+            name="address"
+            className="
+              !h-12
+              !rounded-xl
+              border-gray-200
+              bg-gray-50
+              !px-4
+              transition-all
+              placeholder:text-gray-400
+              focus:border-primary
+              focus:bg-white
+              focus:ring-2
+              focus:ring-primary/20
+            "
+          />
+        </div>
 
-    )
+        {/* Postal Code + City */}
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+          {/* Postal Code */}
+          <div className="!space-y-2">
+            <Label
+              htmlFor="postalCode"
+              className="text-sm font-semibold text-gray-700"
+            >
+              Postal Code
+            </Label>
+
+            <Input
+              id="postalCode"
+              placeholder="e.g. 12345"
+              type="text"
+              name="postalCode"
+              className="
+                !h-12
+                !rounded-xl
+                border-gray-200
+                bg-gray-50
+                !px-4
+                transition-all
+                placeholder:text-gray-400
+                focus:border-primary
+                focus:bg-white
+                focus:ring-2
+                focus:ring-primary/20
+              "
+            />
+          </div>
+
+          {/* City */}
+          <div className="!space-y-2">
+            <Label
+              htmlFor="city"
+              className="text-sm font-semibold text-gray-700"
+            >
+              City
+            </Label>
+
+            <Input
+              id="city"
+              placeholder="Enter your city"
+              type="text"
+              name="city"
+              className="
+                !h-12
+                !rounded-xl
+                border-gray-200
+                bg-gray-50
+                !px-4
+                transition-all
+                placeholder:text-gray-400
+                focus:border-primary
+                focus:bg-white
+                focus:ring-2
+                focus:ring-primary/20
+              "
+            />
+          </div>
+        </div>
+
+        {/* Country */}
+        <div className="!space-y-2">
+          <Label
+            htmlFor="country"
+            className="text-sm font-semibold text-gray-700"
+          >
+            Country
+          </Label>
+
+          <Input
+            id="country"
+            placeholder="Enter your country"
+            type="text"
+            name="country"
+            className="
+              !h-12
+              !rounded-xl
+              border-gray-200
+              bg-gray-50
+              !px-4
+              transition-all
+              placeholder:text-gray-400
+              focus:border-primary
+              focus:bg-white
+              focus:ring-2
+              focus:ring-primary/20
+            "
+          />
+        </div>
+
+        {/* =====================================
+            ORDER SUMMARY
+        ====================================== */}
+
+        <div
+          className="
+            !mt-2
+            rounded-2xl
+            border
+            border-primary/10
+            bg-primary/5
+            !p-5
+          "
+        >
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-500">
+                Order Total
+              </p>
+
+              <p className="!mt-1 text-xs text-gray-400">
+                Including your selected items
+              </p>
+            </div>
+
+            <span className="text-2xl font-black text-primary">
+              {formatCurrency(total)}
+            </span>
+          </div>
+        </div>
+
+        {/* =====================================
+            PAY BUTTON
+        ====================================== */}
+
+        <Button
+          type="submit"
+          className="
+            !h-13
+            !w-full
+            !rounded-xl
+            !py-3
+            text-base
+            font-bold
+            shadow-lg
+            shadow-primary/20
+            transition-all
+            duration-300
+            hover:-translate-y-0.5
+            hover:shadow-xl
+            hover:shadow-primary/25
+          "
+        >
+          <span>Place Order</span>
+
+          <span className="!mx-2 opacity-50">
+            •
+          </span>
+
+          <span>
+            {formatCurrency(total)}
+          </span>
+        </Button>
+
+        {/* Security / Info */}
+        <p className="text-center text-xs text-gray-400">
+          🔒 Your information is secure and protected.
+        </p>
+      </form>
+    </div>
   );
 }
