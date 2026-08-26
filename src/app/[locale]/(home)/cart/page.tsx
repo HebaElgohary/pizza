@@ -38,42 +38,34 @@ export default function CartPage() {
             CART CONTENT
         ========================== */}
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            items-start
-            gap-8
-            lg:grid-cols-[1fr_420px]
-            xl:gap-10
-          "
-        >
+     <div
+  className="
+    grid
+    grid-cols-1
+    items-start
+    gap-8
+    lg:grid-cols-[1fr_420px]
+    xl:gap-10
+  "
+>
+  <div
+    className="
+      rounded-3xl
+      border
+      border-gray-200
+      bg-white
+      !p-5
+      shadow-[0_8px_30px_rgba(0,0,0,0.05)]
+      sm:!p-7
+    "
+  >
+    <CartItems />
+  </div>
 
-          {/* LEFT — CART ITEMS */}
-
-          <div
-            className="
-              min-w-0
-              rounded-3xl
-              border
-              border-gray-200
-              bg-white
-              !p-5
-              shadow-[0_8px_30px_rgba(0,0,0,0.05)]
-              sm:!p-7
-            "
-          >
-            <CartItems />
-          </div>
-
-
-          {/* RIGHT — CHECKOUT */}
-
-          <div className="lg:sticky lg:top-24">
-            <CheckoutForm />
-          </div>
-
-        </div>
+  <div className="lg:sticky lg:top-24">
+    <CheckoutForm />
+  </div>
+</div>
 
       </section>
     </main>

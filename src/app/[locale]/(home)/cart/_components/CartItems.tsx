@@ -107,6 +107,7 @@ export default function CartItems() {
                           key={e.id}
                           className="
           flex
+          flex-col md:flex-row
           items-center
           justify-between
           gap-3
