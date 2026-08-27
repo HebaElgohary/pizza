@@ -269,49 +269,52 @@ export default async function Contact() {
         </div>
 
         {/* ================= BOTTOM FEATURES ================= */}
-        <div className="!mx-auto !mt-10 grid !max-w-6xl gap-4 sm:grid-cols-3">
-          <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-            <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <span className="text-lg font-bold">01</span>
-            </div>
+  <div className="!mx-auto !mt-10 grid !max-w-6xl gap-4 sm:grid-cols-3">
+  {/* Card 01 */}
+  <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <span className="text-lg font-bold">01</span>
+    </div>
 
-            <h3 className="!mt-3 font-bold text-gray-900">
-              Fresh ingredients
-            </h3>
+    <h3 className="!mt-3 font-bold text-gray-900">
+      {contact.features.freshIngredients.title}
+    </h3>
 
-            <p className="!mt-1 text-sm text-gray-500">
-              Quality in every bite
-            </p>
-          </div>
+    <p className="!mt-1 text-sm text-gray-500">
+      {contact.features.freshIngredients.description}
+    </p>
+  </div>
 
-          <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-            <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <span className="text-lg font-bold">02</span>
-            </div>
+  {/* Card 02 */}
+  <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <span className="text-lg font-bold">02</span>
+    </div>
 
-            <h3 className="!mt-3 font-bold text-gray-900">
-              Fast delivery
-            </h3>
+    <h3 className="!mt-3 font-bold text-gray-900">
+      {contact.features.fastDelivery.title}
+    </h3>
 
-            <p className="!mt-1 text-sm text-gray-500">
-              Hot pizza at your door
-            </p>
-          </div>
+    <p className="!mt-1 text-sm text-gray-500">
+      {contact.features.fastDelivery.description}
+    </p>
+  </div>
 
-          <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-            <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <span className="text-lg font-bold">03</span>
-            </div>
+  {/* Card 03 */}
+  <div className="rounded-2xl border border-gray-100 bg-white !p-5 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <div className="!mx-auto flex !h-10 !w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+      <span className="text-lg font-bold">03</span>
+    </div>
 
-            <h3 className="!mt-3 font-bold text-gray-900">
-              Made with care
-            </h3>
+    <h3 className="!mt-3 font-bold text-gray-900">
+      {contact.features.madeWithCare.title}
+    </h3>
 
-            <p className="!mt-1 text-sm text-gray-500">
-              Crafted for pizza lovers
-            </p>
-          </div>
-        </div>
+    <p className="!mt-1 text-sm text-gray-500">
+      {contact.features.madeWithCare.description}
+    </p>
+  </div>
+</div>
       </section>
     </main>
   );

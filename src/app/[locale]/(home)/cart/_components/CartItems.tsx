@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { removeCartItem } from "@/redux/features/cart/cartSlice";
 import { useEffect } from "react";
 import { cartItem } from "@/redux/features/cart/cartSlice";
-import { it } from "node:test";
 
 export default function CartItems() {
   const cart = useAppSelector((state: RootState) => state.cart?.items);

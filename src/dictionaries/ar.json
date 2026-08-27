@@ -93,46 +93,47 @@
   },
 
 
-  "contact": {
-    "phone": "+20 123 456 7890",
-"mail": "hello@pizzanova.com",
-"address": "Menoufia, Egypt",
-    "title": "تواصل معنا",
-    "description": "هل لديك سؤال أو اقتراح أو ترغب ببساطة في التواصل معنا؟ نحن هنا لمساعدتك.",
-    "getTouch": "تواصل معنا",
+"contact": {
+  "phone": "+20 123 456 7890",
+  "mail": "hello@pizzanova.com",
+  "address": "المنوفية، مصر",
 
-    "phoneLabel": "الهاتف",
-    "emailLabel": "البريد الإلكتروني",
-    "locationLabel": "العنوان",
-    "openingHours": "ساعات العمل",
-    "openingHoursValue": "10:00 صباحًا - 12:00 منتصف الليل",
-    "followUs": "تابعنا",
+  "title": "تواصل معنا",
+  "description": "هل لديك سؤال أو اقتراح، أو تريد ببساطة التواصل معنا؟ نحن هنا لمساعدتك.",
+  "getTouch": "تواصل معنا",
 
-    "formTitle": "أرسل لنا رسالة",
-    "formDescription": "هل لديك سؤال أو اقتراح؟ أرسل لنا رسالة وسنقوم بالرد عليك في أقرب وقت ممكن.",
+  "phoneLabel": "الهاتف",
+  "emailLabel": "البريد الإلكتروني",
+  "locationLabel": "الموقع",
+  "openingHours": "ساعات العمل",
+  "openingHoursValue": "10:00 صباحًا - 12:00 منتصف الليل",
+  "followUs": "تابعنا",
 
-    "name": "الاسم",
-    "email": "البريد الإلكتروني",
-    "msg": "رسالتك",
-    "btn": "إرسال الرسالة",
+  "formTitle": "أرسل لنا رسالة",
+  "formDescription": "هل لديك سؤال أو اقتراح؟ أرسل لنا رسالة وسنعود إليك في أقرب وقت.",
 
-    "responseTime": "عادةً ما نرد خلال 24 ساعة.",
+  "name": "الاسم",
+  "email": "البريد الإلكتروني",
+  "msg": "رسالتك",
+  "btn": "إرسال الرسالة",
 
-    "features": {
-      "freshIngredients": {
-        "title": "مكونات طازجة",
-        "description": "جودة في كل قضمة"
-      },
-      "fastDelivery": {
-        "title": "توصيل سريع",
-        "description": "بيتزا ساخنة حتى باب منزلك"
-      },
-      "madeWithCare": {
-        "title": "نُعدها بعناية",
-        "description": "مُحضّرة خصيصًا لعشاق البيتزا"
-      }
+  "responseTime": "نحن عادةً نرد خلال 24 ساعة.",
+
+  "features": {
+    "freshIngredients": {
+      "title": "مكونات طازجة",
+      "description": "جودة في كل قضمة"
+    },
+    "fastDelivery": {
+      "title": "توصيل سريع",
+      "description": "بيتزا ساخنة حتى باب منزلك"
+    },
+    "madeWithCare": {
+      "title": "مصنوعة بعناية",
+      "description": "مُحضّرة خصيصًا لعشاق البيتزا"
     }
   }
+}
 ,
 
 "login": {
