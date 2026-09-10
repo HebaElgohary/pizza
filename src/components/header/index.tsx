@@ -32,7 +32,7 @@ export default async function Index({
   const initialSession = await getServerSession(authOptions);
 
   return (
-    <header className="w-full ">
+    <header className="w-full bg-white">
       <div className="container !mx-auto flex items-center justify-between gap-4 px-4 sm:!px-6 lg:!px-8">
         
         {/* Logo */}

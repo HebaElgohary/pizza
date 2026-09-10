@@ -48,7 +48,7 @@ export function AuthNavBar({
   ];
 
   return (
-    <nav className="relative bg-white">
+    <nav className="relative ">
       <ul
         className={` hidden md:flex gap-8 text-xl font-semibold items-center text-gray-500  ${className}`}
       >
