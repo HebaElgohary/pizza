@@ -32,8 +32,8 @@ export default async function Index({
   const initialSession = await getServerSession(authOptions);
 
   return (
-    <header className="w-full border-b border-gray-100 bg-white">
-      <div className="container mx-auto flex min-h-[72px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <header className="w-full ">
+      <div className="container !mx-auto flex items-center justify-between gap-4 px-4 sm:!px-6 lg:!px-8">
         
         {/* Logo */}
         <PrefetchOnHoverLink
@@ -51,7 +51,7 @@ export default async function Index({
             />
 
             <p
-              className="ml-2 hidden text-lg font-bold text-primary sm:block sm:text-xl lg:ml-3 lg:text-2xl"
+              className="!ml-2 hidden text-lg font-bold text-primary sm:block sm:text-xl lg:!ml-3 lg:text-2xl"
               style={{ fontFamily: "cursive" }}
             >
               {nav.logo}

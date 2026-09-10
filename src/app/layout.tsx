@@ -3,7 +3,7 @@ import ReduxProvider from "@/providers/ReduxProvider";
 import type { ReactNode } from "react";
 import "./globals.css";
 import { Languages } from "@/constants/enums";
-import { Roboto } from "next/font/google";
+import { Cairo, Roboto } from "next/font/google";
 import { Locale } from "@/i18n.config";
 import { Metadata } from "next";
 import { Toaster } from "@/components/ui/Toast";
@@ -13,6 +13,12 @@ import NextAuthSessionProvider from "@/providers/NextAuthSessionProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
+  subsets: ["latin"],
+  weight: ["400", "600", "800"],
+  preload: true,
+});
+const cairo = Cairo({
+  variable: "--font-cairo",
   subsets: ["latin"],
   weight: ["400", "600", "800"],
   preload: true,
@@ -34,7 +40,7 @@ export default async function HomeLayout({
   const dir = locale == Languages.ARABIC ? "rtl" : "ltr";
   return (
     <html lang={locale} dir={dir}>
-      <body className={roboto.className}>
+      <body className={Languages.ARABIC ?cairo.className:roboto.className}>
         <NextAuthSessionProvider>
         <ReduxProvider>
           {children}
