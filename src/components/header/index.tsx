@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { ReactNode } from "react";
 import Image from "next/image";
 
 import { NavBar } from "./NavBar";
@@ -17,8 +17,10 @@ import { AuthNavBar } from "@/app/[locale]/auth/AuthNavBar";
 
 export default async function Index({
   className,
+  children
 }: {
   className?: string;
+  children:ReactNode
 }) {
   const isAuthPage = (await headers())
     .get("x-url")
@@ -32,7 +34,7 @@ export default async function Index({
   const initialSession = await getServerSession(authOptions);
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full ">
       <div className="container !mx-auto flex items-center justify-between gap-4 px-4 sm:!px-6 lg:!px-8">
         
         {/* Logo */}
@@ -60,7 +62,8 @@ export default async function Index({
         </PrefetchOnHoverLink>
 
         {/* Navigation */}
-        <div className="flex min-w-0 flex-1 justify-end">
+        {children}
+        {/* <div className="flex min-w-0 flex-1 justify-end">
           {isAuthPage ? (
             <AuthNavBar
               locale={locale}
@@ -76,7 +79,7 @@ export default async function Index({
               initialSession={initialSession}
             />
           )}
-        </div>
+        </div> */}
       </div>
     </header>
   );
