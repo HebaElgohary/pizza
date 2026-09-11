@@ -16,7 +16,7 @@ export default async function AuthLayout({children}:{children:ReactNode}) {
  
     return (
     <div>
-    <Header >
+    <header className='flex items-center gap-11 justify-between w-full'>
           <PrefetchOnHoverLink
                              href={Routes.ROOT}
                              className="shrink-0"
@@ -39,7 +39,7 @@ export default async function AuthLayout({children}:{children:ReactNode}) {
                                </p>
                              </div>
                            </PrefetchOnHoverLink>
-         <div className="flex min-w-0 flex-1 justify-end">
+         <div className="flex  justify-end">
            
             <AuthNavBar
               locale={locale}
@@ -49,7 +49,7 @@ export default async function AuthLayout({children}:{children:ReactNode}) {
             />
         </div> 
 
-    </Header>
+    </header>
     {children}
     <Footer/>
     </div>

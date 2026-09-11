@@ -48,7 +48,7 @@ export function AuthNavBar({
   ];
 
   return (
-    <nav className="relative ">
+    <nav className="relative !px-5">
       <ul
         className={` hidden md:flex gap-8 text-xl font-semibold items-center text-gray-500  ${className}`}
       >
@@ -70,12 +70,12 @@ export function AuthNavBar({
             {locale == Languages.ARABIC ? "English" : "العربية"}
           </Button>
         </li>
-        <li>
+        {/* <li>
           <AuthBtn initialSession={initialSession} nav={nav} locale={locale}></AuthBtn>
         </li>
         <li>
           <CartButton />
-        </li>
+        </li> */}
       </ul>
       {open && (
         <X
@@ -95,7 +95,7 @@ export function AuthNavBar({
       <ul
         className={
           open
-            ? `flex flex-col w-full md:hidden gap-3 mt-4 text-xs font-semibold items-center text-gray-500 !p-5  ${className}`
+            ? `flex flex-col w-full md:hidden gap-3 !mt- !px-11 text-xs font-semibold items-center text-gray-500 !p-5  ${className}`
             : "hidden "
         }
       >
@@ -123,12 +123,12 @@ export function AuthNavBar({
             {locale == Languages.ARABIC ? "English" : "العربية"}
           </Button>
         </li>
-        <li>
+        {/* <li>
           <AuthBtn initialSession={initialSession} locale={locale} nav={nav} ></AuthBtn>
         </li>
         <li>
           <CartButton />
-        </li>
+        </li> */}
       </ul>
 
       {/* nav links in sm screens */}

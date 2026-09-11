@@ -2,6 +2,7 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import Header from "@/components/header";
 import SignInForm from "./SignInForm";
 import { Locale } from "@/i18n.config";
+import AuthLayout from "@/components/layouts/AuthLayout";
 
 type Props = {
   params: Promise<{ locale: Locale }>;
@@ -13,14 +14,17 @@ export default async function SigninPage({ params }: Props) {
   const { login } = await getDictionary(locale);
 
   return (
+    <AuthLayout>
+
+
     <main className="relative !min-h-screen overflow-hidden bg-gradient-to-br from-primary/10 via-white to-orange-50">
       {/* Decorative background */}
-      <div className="pointer-events-none absolute -left-32 -top-32 !h-72 !w-72 rounded-full bg-primary/10 blur-3xl" />
+      {/* <div className="pointer-events-none absolute -left-32 -top-32 !h-72 !w-72 rounded-full bg-primary/10 blur-3xl" /> */}
 
-      <div className="pointer-events-none absolute -bottom-32 -right-32 !h-80 !w-80 rounded-full bg-orange-200/30 blur-3xl" />
+     
 
       {/* Header */}
-      <Header />
+      {/* <Header /> */}
 
       {/* Content */}
       <section className="container relative flex !min-h-[calc(100vh-80px)] items-center justify-center !px-4 !py-8">
@@ -123,5 +127,6 @@ export default async function SigninPage({ params }: Props) {
         </div>
       </section>
     </main>
+    </AuthLayout>
   );
 }

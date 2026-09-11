@@ -4,12 +4,14 @@ import { getDictionary } from "@/app/[locale]/dictionaries";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import Header from "@/components/header";
 import RegisterForm from "./RegisterForm";
+import AuthLayout from "@/components/layouts/AuthLayout";
 
 export default async function Signup() {
   const locale = await getCurrentLocale();
   const { register } = await getDictionary(locale);
 
   return (
+    <AuthLayout>
    <main className="relative !min-h-screen overflow-hidden bg-gradient-to-br from-primary/10 via-white to-orange-50">
 
   {/* Decorative background */}
@@ -17,7 +19,7 @@ export default async function Signup() {
 
   <div className="pointer-events-none absolute -bottom-32 -right-32 !h-80 !w-80 rounded-full bg-orange-200/30 blur-3xl" />
 
-  <Header />
+  {/* <Header /> */}
 
   <section className="container relative flex !min-h-[calc(100vh-80px)] items-center justify-center !px-4 !py-8">
 
@@ -129,5 +131,6 @@ export default async function Signup() {
   </section>
 
 </main>
+</AuthLayout>
   );
 }
