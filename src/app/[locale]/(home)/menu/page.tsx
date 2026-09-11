@@ -5,12 +5,14 @@ import Image from "next/image";
 import MenuButton from "@/components/MenuButton/index";
 import { formatCurrency } from "@/lib/formatters";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
+import PublicLayout from "@/components/layouts/PublicLayout";
 
 export default async function Menu() {
   const categories: categoryWithPayLoad[] = await getProductsByCategories();
   const locale = await getCurrentLocale();
 
   return (
+    <PublicLayout>
     <main className="min-h-screen bg-[#fffaf7]">
       {/* ================= HERO ================= */}
       <section className="container !mx-auto !px-4 !pt-12 !pb-8 md:!pt-16">
@@ -161,5 +163,6 @@ export default async function Menu() {
         ))}
       </section>
     </main>
+    </PublicLayout>
   );
 }

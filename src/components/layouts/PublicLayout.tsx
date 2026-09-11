@@ -17,7 +17,7 @@ export default async function PublicLayout({children}:{children:ReactNode}) {
  
     return (
     <div>
-    <Header >
+    
          <header className="flex min-w-0 flex-1 justify-end">
              <PrefetchOnHoverLink
                      href={Routes.ROOT}
@@ -52,7 +52,7 @@ export default async function PublicLayout({children}:{children:ReactNode}) {
             </div>
         </header> 
 
-    </Header>
+    
     {children}
     <Footer/>
     </div>

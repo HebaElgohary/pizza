@@ -5,12 +5,14 @@ import About from "@/app/[locale]/(home)/about/page";
 import Contact from "@/app/[locale]/(home)/contact/page";
 import MainHeading from "@/components/MainHeading";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
-import { getDictionary } from "./dictionaries";
+import { getDictionary } from "../dictionaries";
+import PublicLayout from "@/components/layouts/PublicLayout";
 export default async function Home() {
   const  locale  = await getCurrentLocale();
   console.log('loooooooooooooooooocle')
   const { about } = await getDictionary(locale);
   return (
+    <PublicLayout>
     <main className="">
       <Hero />
       <BestSellers />
@@ -21,5 +23,6 @@ export default async function Home() {
 
       <Contact />
     </main>
+  </PublicLayout>
   );
 }

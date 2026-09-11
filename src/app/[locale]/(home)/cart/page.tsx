@@ -3,9 +3,11 @@ import React from "react";
 import CartItems from "./_components/CartItems";
 import CheckoutForm from "./_components/CheckoutForm";
 import MainHeading from "@/components/MainHeading";
+import PublicLayout from "@/components/layouts/PublicLayout";
 
 export default function CartPage() {
   return (
+    <PublicLayout>
     <main className="min-h-screen bg-[#faf8f6]">
 
       <section
@@ -69,5 +71,6 @@ export default function CartPage() {
 
       </section>
     </main>
+    </PublicLayout>
   );
 }

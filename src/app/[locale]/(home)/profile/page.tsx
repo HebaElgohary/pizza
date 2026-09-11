@@ -7,6 +7,7 @@ import { getDictionary } from "../../dictionaries";
 import { authOptions } from "@/server/db/auth";
 import { User, UserRole } from "@prisma/client";
 import { Routes } from "@/constants/enums";
+import PublicLayout from "@/components/layouts/PublicLayout";
 export default async function page() {
   const session = await getServerSession(authOptions);
  const user=session?.user as User
@@ -14,8 +15,10 @@ export default async function page() {
   const dict = await getDictionary(locale); 
  
   return (
-    <div className="!min-h-[70vh] ">
+    <PublicLayout>
+    <main className="!min-h-[70vh] ">
       <EditUserForm slug={Routes.PROFILE} user={user } locale={locale}  dict={dict} ></EditUserForm>
-    </div>
+    </main>
+    </PublicLayout>
   );
 }

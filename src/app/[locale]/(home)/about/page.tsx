@@ -7,6 +7,7 @@ import Link from "next/link";
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { getDictionary } from "../../dictionaries";
 import { Languages } from "@/constants/enums";
+import PublicLayout from "@/components/layouts/PublicLayout";
 
 export default async function AboutContent() {
   const  locale  = await getCurrentLocale();
@@ -17,6 +18,7 @@ export default async function AboutContent() {
   const chefs: Chef[] = await getChefs();
 
   return (
+    <PublicLayout>
     <main className="bg-white text-gray-800">
       {/* HERO */}
      <section className="relative !px-auto overflow-hidden bg-gradient-to-br from-white via-primary/5 to-orange-50">
@@ -347,5 +349,6 @@ export default async function AboutContent() {
         </div>
       </footer>
     </main>
+    </PublicLayout>
   );
 }

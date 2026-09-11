@@ -12,12 +12,14 @@ import {
 
 import { getCurrentLocale } from "@/lib/getCurrentLocale";
 import { getDictionary } from "../../dictionaries";
+import PublicLayout from "@/components/layouts/PublicLayout";
 
 export default async function Contact() {
   const locale = await getCurrentLocale();
   const { contact } = await getDictionary(locale);
 
   return (
+    <PublicLayout>
     <main className="relative !min-h-screen overflow-hidden bg-gradient-to-br from-primary/5 via-white to-orange-50/70">
       {/* Background decoration */}
       <div className="pointer-events-none absolute -left-32 top-20 !h-72 !w-72 rounded-full bg-primary/10 blur-3xl" />
@@ -317,5 +319,6 @@ export default async function Contact() {
 </div>
       </section>
     </main>
+    </PublicLayout>
   );
 }
